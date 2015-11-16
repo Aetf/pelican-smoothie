@@ -11,7 +11,6 @@
 <!-- Intro Header -->
 {% endblock header%}
 
-
 {% block navbar_links%}
 {% endblock navbar_links%}
 
@@ -28,16 +27,16 @@
                     <p class="intro-text">{{SITE_SUBTITLE_LABEL}}</p>
                 </div>
                 {% block fab %}
-                  <div class="col-sm-1 fixed-action-btn">
+                <div class="col-sm-1 fixed-action-btn">
                     <ul>
-                      <li><a href='#search' class="page-scroll btn-floating customcolor"><i class="material-icons">search</i></a></li>
-                      <li><a href='#contact' class="page-scroll btn-floating customcolor"><i class="material-icons">textsms</i></a></li>
-                      <li><a href='#about' class="page-scroll btn-floating customcolor"><i class="material-icons">info_outline</i></a></li>
+                        <li><a href='#search' class="page-scroll btn-floating customcolor"><i class="material-icons">search</i></a></li>
+                        <li><a href='#contact' class="page-scroll btn-floating customcolor"><i class="material-icons">textsms</i></a></li>
+                        <li><a href='#about' class="page-scroll btn-floating customcolor"><i class="material-icons">info_outline</i></a></li>
                     </ul>
                     <a href='{{SITEURL}}/blog' class="btn-floating btn-large white page-scroll">
-                      <i class="material-icons md-dark">keyboard_arrow_right</i>
+                        <i class="material-icons md-dark">keyboard_arrow_right</i>
                     </a>
-                  </div>
+                </div>
                 {% endblock fab %}
             </div>
         </div>
@@ -67,38 +66,39 @@
 {{ super() }}
 {% block fabscript %}
 <script>
-// jQuery to change FAB
-$(window).scroll(function() {
+    // jQuery to change FAB
+    $(window).scroll(function() {
         var scroll = $(window).scrollTop();
-      if (scroll > window.innerHeight/4 ) {
-        $(".fixed-action-btn").addClass("scrolled");
-        $(".fixed-action-btn a.btn-large").attr("href", "#page-top")
-        $('.fixed-action-btn .btn-large .material-icons').text('keyboard_arrow_up');
-        $('.fixed-action-btn .btn-large').addClass('customcolor');
-        $('.fixed-action-btn .btn-large').removeClass('white');
-        $('.fixed-action-btn a.btn-large i').addClass('md-light');
-        $('.fixed-action-btn a.btn-large i').removeClass('md-dark');
-    }
-      if (scroll < window.innerHeight/4  ) {
-        $(".fixed-action-btn").removeClass("scrolled");
-        $(".fixed-action-btn a.btn-large").attr("href", "{{SITEURL}}/blog")
-        $('.fixed-action-btn .btn-large .material-icons').text('keyboard_arrow_right');
-        $('.fixed-action-btn .btn-large').removeClass('customcolor');
-        $('.fixed-action-btn .btn-large').addClass('white');
-        $('.fixed-action-btn a.btn-large i').removeClass('md-light');
-        $('.fixed-action-btn a.btn-large i').addClass('md-dark');
-    }
-});
+        if (scroll > window.innerHeight/4 ) {
+            $(".fixed-action-btn").addClass("scrolled");
+            $(".fixed-action-btn a.btn-large").attr("href", "#page-top")
+            $('.fixed-action-btn .btn-large .material-icons').text('keyboard_arrow_up');
+            $('.fixed-action-btn .btn-large').addClass('customcolor');
+            $('.fixed-action-btn .btn-large').removeClass('white');
+            $('.fixed-action-btn a.btn-large i').addClass('md-light');
+            $('.fixed-action-btn a.btn-large i').removeClass('md-dark');
+        }
+        if (scroll < window.innerHeight/4  ) {
+            $(".fixed-action-btn").removeClass("scrolled");
+            $(".fixed-action-btn a.btn-large").attr("href", "{{SITEURL}}/blog")
+            $('.fixed-action-btn .btn-large .material-icons').text('keyboard_arrow_right');
+            $('.fixed-action-btn .btn-large').removeClass('customcolor');
+            $('.fixed-action-btn .btn-large').addClass('white');
+            $('.fixed-action-btn a.btn-large i').removeClass('md-light');
+            $('.fixed-action-btn a.btn-large i').addClass('md-dark');
+        }
+    });
 </script>
 
 <script>
-$(".fixed-action-btn").hover(function(){
-    $('.fixed-action-btn .btn-large .material-icons').text('description');
-    $('.fixed-action-btn.scrolled .btn-large .material-icons').text('keyboard_arrow_up');
-    }, function(){
+    $(".fixed-action-btn").hover(function() {
+        $('.fixed-action-btn .btn-large .material-icons').text('description');
+        $('.fixed-action-btn.scrolled .btn-large .material-icons').text('keyboard_arrow_up');
+    },
+    function() {
         $('.fixed-action-btn .btn-large .material-icons').text('keyboard_arrow_right');
         $('.fixed-action-btn.scrolled .btn-large .material-icons').text('keyboard_arrow_up');
-});
+    });
 </script>
 {% endblock fabscript %}
 {% endblock jscripts %}

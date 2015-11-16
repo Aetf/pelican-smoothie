@@ -38,31 +38,32 @@
     {% endblock titletag %}
 
     <!-- iPython Notebook script -->
-    <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
-            <script type="text/javascript">
-            init_mathjax = function() {
-                if (window.MathJax) {
-                    // MathJax loaded
-                    MathJax.Hub.Config({
-                        tex2jax: {
-                            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-                            displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
-                        },
-                        displayAlign: 'left', // Change this to 'center' to center equations.
-                        "HTML-CSS": {
-                            styles: {'.MathJax_Display': {"margin": 0}}
-                        }
-                    });
-                    MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
-                }
+    <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" 
+            type="text/javascript"></script>
+    <script type="text/javascript">
+        init_mathjax = function() {
+            if (window.MathJax) {
+                // MathJax loaded
+                MathJax.Hub.Config({
+                    tex2jax: {
+                        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                        displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+                    },
+                    displayAlign: 'left', // Change this to 'center' to center equations.
+                    "HTML-CSS": {
+                        styles: {'.MathJax_Display': {"margin": 0}}
+                    }
+                });
+                MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
             }
-            init_mathjax();
-        </script>
-      <!--Import jQuery before materialize.js-->
-      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        }
+        init_mathjax();
+    </script>
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
-      <!-- iPython Notebook script for collapsing and expanding code -->
-        <script type="text/javascript">
+    <!-- iPython Notebook script for collapsing and expanding code -->
+    <script type="text/javascript">
         jQuery(document).ready(function($) {
             $("div.collapseheader").click(function () {
             $header = $(this).children("span").first();
@@ -75,22 +76,22 @@
             });
         });
         });
-        </script>
-        <script type="text/javascript"
-        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-        </script>
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+
     <!-- Bootstrap Core CSS -->
     <link href="/theme/css/bootstrap.min.css" rel="stylesheet">
 
-         <!-- Compiled and minified CSS -->
-     <link rel="stylesheet" href="/theme/css/materialize.min.css">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="/theme/css/materialize.min.css">
 
-     <!-- Compiled and minified JavaScript -->
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js">
+    </script>
 
     <!-- Custom Fonts -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
@@ -117,11 +118,11 @@
 {% block body %}
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
-   {% block search %}
-   <div class="search-button">
-            <form id="search" class="floating-search" action="{{SITE_URL}}/search.html" onsubmit="return validateForm(this.elements['q'].value);">
-            <input type="search" class="search-query" placeholder="Search" name="q"></form>
-       </div>
+    {% block search %}
+    <div class="search-button">
+        <form id="search" class="floating-search" action="{{SITE_URL}}/search.html" onsubmit="return validateForm(this.elements['q'].value);">
+        <input type="search" class="search-query" placeholder="Search" name="q"></form>
+    </div>
     {% endblock search %}
 
     {% block header %}
@@ -132,15 +133,16 @@
     {% endblock navigation %}
 
     <div class="content-block">
-    {% block content %}
-    {% endblock content %}
+        {% block content %}
+        {% endblock content %}
     </div>
 
     {% block footer %}
     <!-- Footer -->
     <footer>
-    <div id="footer" class="container text-center">
-        {{SITE_LICENSE}}    </div>
+        <div id="footer" class="container text-center">
+            {{SITE_LICENSE}}
+        </div>
     </footer>
     {% endblock footer %}
 
@@ -160,37 +162,37 @@
     <script type="text/javascript" src="{{ SITEURL }}/theme/tipuesearch/tipuesearch.min.js"></script>
     {% block fabscript %}
     <script>
-    // jQuery to change FAB
-    $(window).scroll(function() {
+        // jQuery to change FAB
+        $(window).scroll(function() {
             var scroll = $(window).scrollTop();
-          if (scroll > window.innerHeight/6 ) {
-            $(".fixed-action-btn").addClass("scrolled");
-            $(".fixed-action-btn a.btn-large").attr("href", "#page-top")
-            $('.fixed-action-btn .btn-large .material-icons').text('keyboard_arrow_up');
-            $('.fixed-action-btn .btn-large').addClass('customcolor');
-            $('.fixed-action-btn .btn-large').removeClass('white');
-            $('.fixed-action-btn a.btn-large i').addClass('md-light');
-            $('.fixed-action-btn a.btn-large i').removeClass('md-dark');
-        }
-          if (scroll > 200 ) {
-            $(".fixed-action-btn").addClass("scrolled");
-            $(".fixed-action-btn a.btn-large").attr("href", "#page-top")
-            $('.fixed-action-btn .btn-large .material-icons').text('keyboard_arrow_up');
-            $('.fixed-action-btn .btn-large').addClass('customcolor');
-            $('.fixed-action-btn .btn-large').removeClass('white');
-            $('.fixed-action-btn a.btn-large i').addClass('md-light');
-            $('.fixed-action-btn a.btn-large i').removeClass('md-dark');
-        }
-          if (scroll < window.innerHeight/6 ) {
-            $(".fixed-action-btn").removeClass("scrolled");
-            $(".fixed-action-btn a.btn-large").attr("href", "{% block back_link %}{{SITEURL}}/blog{% endblock back_link %}")
-            $('.fixed-action-btn .btn-large .material-icons').text({% block keyboard_arrow_direction %}'keyboard_arrow_left'{% endblock keyboard_arrow_direction %});
-            $('.fixed-action-btn .btn-large').removeClass('customcolor');
-            $('.fixed-action-btn .btn-large').addClass('white');
-            $('.fixed-action-btn a.btn-large i').removeClass('md-light');
-            $('.fixed-action-btn a.btn-large i').addClass('md-dark');
-        }
-    });
+            if (scroll > window.innerHeight/6 ) {
+                $(".fixed-action-btn").addClass("scrolled");
+                $(".fixed-action-btn a.btn-large").attr("href", "#page-top")
+                $('.fixed-action-btn .btn-large .material-icons').text('keyboard_arrow_up');
+                $('.fixed-action-btn .btn-large').addClass('customcolor');
+                $('.fixed-action-btn .btn-large').removeClass('white');
+                $('.fixed-action-btn a.btn-large i').addClass('md-light');
+                $('.fixed-action-btn a.btn-large i').removeClass('md-dark');
+            }
+            if (scroll > 200 ) {
+                $(".fixed-action-btn").addClass("scrolled");
+                $(".fixed-action-btn a.btn-large").attr("href", "#page-top")
+                $('.fixed-action-btn .btn-large .material-icons').text('keyboard_arrow_up');
+                $('.fixed-action-btn .btn-large').addClass('customcolor');
+                $('.fixed-action-btn .btn-large').removeClass('white');
+                $('.fixed-action-btn a.btn-large i').addClass('md-light');
+                $('.fixed-action-btn a.btn-large i').removeClass('md-dark');
+            }
+            if (scroll < window.innerHeight/6 ) {
+                $(".fixed-action-btn").removeClass("scrolled");
+                $(".fixed-action-btn a.btn-large").attr("href", "{% block back_link %}{{SITEURL}}/blog{% endblock back_link %}")
+                $('.fixed-action-btn .btn-large .material-icons').text({% block keyboard_arrow_direction %}'keyboard_arrow_left'{% endblock keyboard_arrow_direction %});
+                $('.fixed-action-btn .btn-large').removeClass('customcolor');
+                $('.fixed-action-btn .btn-large').addClass('white');
+                $('.fixed-action-btn a.btn-large i').removeClass('md-light');
+                $('.fixed-action-btn a.btn-large i').addClass('md-dark');
+            }
+        });
     </script>
     {% endblock fabscript %}
     {% endblock jscripts %}
