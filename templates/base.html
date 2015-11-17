@@ -83,12 +83,8 @@
     <!-- Bootstrap Core CSS -->
     <link href="/theme/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="/theme/css/materialize.min.css">
-
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js">
-    </script>
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
 
     <!-- Custom Fonts -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -125,9 +121,6 @@
     </div>
     {% endblock search %}
 
-    {% block navigation %}
-    {% endblock navigation %}
-
     {% set header_class = header_class|default('intro') -%}
     {% set header_bg = header_bg|default('') -%}
 
@@ -138,12 +131,12 @@
     {% set fab_main_icon_hover = fab_main_icon_hover|default(fab_main_icon) -%}
     {% set fab_main_color = fab_main_color|default('grey') -%}
     {% set fab_main_color_dark = fab_main_color_dark|default('blue') -%}
+    <!--<div class="content-block">-->
     <div class="content-block">
         <header class="{{ header_class }}"
                 {% if header_bg %}
                 style="background-image: url('{{header_bg}}');"
-                {% endif %}
-        >
+                {% endif %}>
             <div class="intro-body">
                 <div class="container">
                     <div class="row">
@@ -164,7 +157,20 @@
                 </div>
             </div>
         </header>
-
+        {% block navigation %}
+            <div class="ucw-nav" style="position: relative; top: -64px;">
+            <nav>
+                <div class="nav-wrapper blue lighten-1">
+                    <a href="#" class="brand-logo">Logo</a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li><a href="#"><i class="material-icons">search</i></a></li>
+                        <li><a href="#"><i class="material-icons">info</i></a></li>
+                        <li><a href="#"><i class="material-icons">menu</i></a></li>
+                    </ul>
+                </div>
+            </nav>
+            </div>
+        {% endblock navigation %}
         {% block content %}
         {% endblock content %}
     </div>
@@ -182,11 +188,14 @@
     <!-- jQuery -->
     <script src="/theme/js/jquery.js"></script>
 
+    <!-- Plugin JavaScript -->
+    <script src="/theme/js/jquery.easing.min.js"></script>
+
     <!-- Bootstrap Core JavaScript -->
     <script src="/theme/js/bootstrap.min.js"></script>
 
-    <!-- Plugin JavaScript -->
-    <script src="/theme/js/jquery.easing.min.js"></script>
+    <!-- Materialize JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script src="/theme/js/pelican-smoothie.js"></script>
@@ -205,7 +214,7 @@
                             .text('{{ fab_main_icon_hover }}')
                         )
                     );
-        var waypoint = new Waypoint({
+        new Waypoint({
             element: $("{{ waypoint_selector }}")[0],
             handler: function(direction) {
                 var scrolled = (direction === 'down');
@@ -239,6 +248,19 @@
             $('.fixed-action-btn').not('.scrolled')
                 .find('.btn-large .material-icons')
                 .text('{{ fab_main_icon }}');
+        });
+
+        new Waypoint({
+            element: $('.ucw-nav'),
+            handler: function(direction) {
+                var shouldBeStuck = direction === "down";
+                var wrapperHeight = shouldBeStuck ?
+                    $('.ucw-nav nav').outerHeight(true)
+                    : '';
+
+                $('.ucw-nav').height(wrapperHeight);
+                $('.ucw-nav').toggleClass('navbar-fixed', shouldBeStuck);
+            }
         });
     </script>
     {% endblock jscripts %}
