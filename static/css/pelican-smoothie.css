@@ -694,6 +694,10 @@ div[aria-expanded="true"] {
     padding: 0 1em 0 1em;
 }
 
+.ucw-nav a {
+    color: rgb(255, 255, 255);
+}
+
 .navbar-fixed nav {
     top: 0;
     width: 95%;
