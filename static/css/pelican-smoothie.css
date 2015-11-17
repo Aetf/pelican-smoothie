@@ -478,6 +478,13 @@ code {
     padding: 0;
 }
 
+.fixed-action-btn a {
+    -webkit-transition: background-color 500ms ease;
+    -moz-transition: background-color 500ms ease;
+    -o-transition: background-color 500ms ease;
+    transition: background-color 500ms ease;
+}
+
 @media(min-width:992px){
     .fixed-action-btn {
         /*margin-left:-12.5%;*/
