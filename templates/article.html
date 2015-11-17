@@ -44,9 +44,14 @@
     </div>
 {% endblock header %}
 
+
+{% set waypoint_selector = '.article-heading' %}
+{% set fab_main_link = SITEURL + '/blog' %}
+{% set fab_main_icon = 'keyboard_arrow_left' %}
+{% set fab_main_icon_hover = 'description' %}
 {% block fab %}
-    <a href='{{SITEURL}}/blog' class="btn-floating btn-large white page-scroll">
-        <i class="md-dark material-icons">keyboard_arrow_left</i>
+    <a href='{{ fab_main_link }}' class="btn-floating btn-large white page-scroll">
+        <i class="material-icons md-dark">{{ fab_main_icon }}</i>
     </a>
 {% endblock fab %}
 
@@ -66,10 +71,3 @@
     </article>
     <hr>
 {% endblock content %}
-
-{% set waypoint_selector = '.article-heading' %}
-{% set fab_main_link = SITEURL + '/blog' %}
-{% set fab_main_icon = 'keyboard_arrow_left' %}
-{% block jscripts %}
-{{super()}}
-{% endblock jscripts %}

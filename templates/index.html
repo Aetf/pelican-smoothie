@@ -19,6 +19,10 @@
     </div>
 {% endblock header%}
 
+{% set waypoint_selector = '.brand-heading' %}
+{% set fab_main_link = SITEURL + '/blog' %}
+{% set fab_main_icon = 'menu' %}
+{% set fab_main_icon_hover = 'description' %}
 {% block fab %}
     <ul>
         <li>
@@ -33,12 +37,12 @@
         </li>
         <li>
             <a href='#contact' class="page-scroll btn-floating customcolor">
-                <i class="material-icons">textsms</i>
+                <i class="material-icons">forum</i>
             </a>
         </li>
     </ul>
-    <a href='{{SITEURL}}/blog' class="btn-floating btn-large white page-scroll">
-        <i class="material-icons md-dark">description</i>
+    <a href='{{ fab_main_link }}' class="btn-floating btn-large white page-scroll">
+        <i class="material-icons md-dark">{{ fab_main_icon }}</i>
     </a>
 {% endblock fab %}
 
@@ -67,30 +71,3 @@
     {% endblock contact %}
 
 {% endblock content %}
-
-{% set waypoint_selector = '.brand-heading' %}
-{% set fab_main_link = SITEURL + '/blog' %}
-{% set fab_main_icon = 'description' %}
-{% block jscripts %}
-{{ super() }}
-
-<script>
-    var oldMainText;
-    $(".fixed-action-btn").hover(function() {
-        oldMainText = $('.fixed-action-btn')
-            .not('.scrolled')
-            .find('.btn-large .material-icons')
-            .text();
-        $('.fixed-action-btn')
-            .not('.scrolled')
-            .find('.btn-large .material-icons')
-            .text('description');
-    },
-    function() {
-        $('.fixed-action-btn')
-            .not('.scrolled')
-            .find('.btn-large .material-icons')
-            .text(oldMainText);
-    });
-</script>
-{% endblock jscripts %}
