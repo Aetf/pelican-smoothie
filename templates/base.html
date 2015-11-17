@@ -161,8 +161,8 @@
     {% endblock footer %}
 
     {% set waypoint_selector = waypoint_selector|default('.brand-heading') -%}
-    {% set back_link = back_link|default(SITEURL + '/blog') -%}
-    {% set keyboard_arrow_direction = keyboard_arrow_direction|default('keyboard_arrow_left') -%}
+    {% set fab_main_link = fab_main_link|default(SITEURL + '/blog') -%}
+    {% set fab_main_icon = fab_main_icon|default('keyboard_arrow_left') -%}
     {% block jscripts %}
     <!-- jQuery -->
     <script src="/theme/js/jquery.js"></script>
@@ -181,18 +181,33 @@
     <!-- Fixed Action Button JavaScript -->
     <script type="text/javascript" src="/theme/js/jquery.waypoints.min.js"></script>
     <script>
+        var menuItem = $(document.createElement('li'))
+                    .append($(document.createElement('a'))
+                        .attr("href", "{{ fab_main_link }}")
+                        .addClass('page-scroll btn-floating customcolor')
+                        .append($(document.createElement('i'))
+                            .addClass('material-icons')
+                            .text('{{ fab_main_icon }}')
+                        )
+                    );
         var waypoint = new Waypoint({
             element: $("{{ waypoint_selector }}")[0],
             handler: function(direction) {
                 var scrolled = (direction === 'down');
                 if (scrolled) {
+                    if (!$(".fixed-action-btn ul").length) {
+                        $(".fixed-action-btn").append(document.createElement('ul'));
+                    }
+                    $(".fixed-action-btn ul").append(menuItem);
+
                     $(".fixed-action-btn a.btn-large").attr("href", "#page-top");
                     $('.fixed-action-btn .btn-large .material-icons')
                         .text('keyboard_arrow_up');
                 } else {
-                    $(".fixed-action-btn a.btn-large").attr("href", "{{ back_link }}");
+                    menuItem.detach();
+                    $(".fixed-action-btn a.btn-large").attr("href", "{{ fab_main_link }}");
                     $('.fixed-action-btn .btn-large .material-icons')
-                        .text("{{ keyboard_arrow_direction }}");
+                        .text("{{ fab_main_icon }}");
                 }
                 $('.fixed-action-btn').toggleClass('scrolled', scrolled);
                 $('.fixed-action-btn .btn-large').toggleClass('customcolor', scrolled);

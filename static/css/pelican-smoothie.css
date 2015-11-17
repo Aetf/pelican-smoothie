@@ -464,8 +464,8 @@ code {
 .material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
 
 .fixed-action-btn.fab {
-    bottom: 6em;
-    right: 4em;
+    bottom: 3em;
+    right: 1.5em;
     text-align: center;
 }
 

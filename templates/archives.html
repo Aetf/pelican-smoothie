@@ -41,8 +41,8 @@ mixpanel.track("Page", {"Name": "{{AUTHOR}}", "page": "Archives", "url": "{{outp
 {% endblock content %}
 
 {% set waypoint_selector = '.article-heading' %}
-{% set back_link = SITEURL + '/blog' %}
-{% set keyboard_arrow_direction = 'keyboard_arrow_left' %}
+{% set fab_main_link = SITEURL + '/blog' %}
+{% set fab_main_icon = 'keyboard_arrow_left' %}
 {% block jscripts %}
 {{super()}}
 {% endblock jscripts %}
