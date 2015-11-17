@@ -33,7 +33,7 @@
 
 
 {% set header_class = "intro-header-article" %}
-{% set header_style = "background-image: url('{{ article.post_bg }}');" %}
+{% set header_bg = article.post_bg %}
 {% block header %}
     <div class="col-sm-10 col-sm-offset-1">
         <h1 class="article-heading">{{ article.title }}</h1>

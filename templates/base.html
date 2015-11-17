@@ -129,7 +129,7 @@
     {% endblock navigation %}
 
     {% set header_class = header_class|default('intro') -%}
-    {% set header_style = header_style|default('') -%}
+    {% set header_bg = header_bg|default('') -%}
 
     {% set waypoint_selector = waypoint_selector|default('.brand-heading') -%}
     {% set fab_main_link = fab_main_link|default(SITEURL + '/blog') -%}
@@ -139,7 +139,11 @@
     {% set fab_main_color = fab_main_color|default('grey') -%}
     {% set fab_main_color_dark = fab_main_color_dark|default('blue') -%}
     <div class="content-block">
-        <header class="{{ header_class }}" style="{{ header_style }}">
+        <header class="{{ header_class }}"
+                {% if header_bg %}
+                style="background-image: url('{{header_bg}}');"
+                {% endif %}
+        >
             <div class="intro-body">
                 <div class="container">
                     <div class="row">
