@@ -7,46 +7,42 @@ mixpanel.track("Page", {"Name": "{{AUTHOR}}", "page": "Archives", "url": "{{outp
 </script>
 {% endblock analytics %}
 
-{% block content %}
-    <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header-article">
-        <div class="intro-body">
-            <div class="container">
-                <div class="row">
-                    {% block fab %}
-                      <div class="col-sm-2 fixed-action-btn">
-                        <a href='{{SITEURL}}/blog' class="btn-floating btn-large white page-scroll">
-                          <i class="md-dark material-icons">keyboard_arrow_left</i>
-                        </a>
-                      </div>
-                    {% endblock fab %}
-                    <div class="col-sm-10 col-sm-offset-2">
-                    <h1 class="article-heading">All Posts</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-<div class="container">
-    <div class="row">
-        {% for year, articles in dates|groupby( 'date.year' )|reverse %}
-            <div class="col-md-10 col-md-offset-2">
-            <h2>{{ year }}</h2>
-            </div>
-            <ul>
-            {% for article in articles %}
-            <div class="col-md-10 col-md-offset-2">
-            <li><a href="{{ article.url }}">{{ article.title }}</a></li>
-            </div>
-            {% endfor %}
-            </ul>
-        {% endfor %}
+{% set header_class = "intro-header-article" %}
+{% set header_style = "background-image: url('{{COVER_IMG}}');" %}
+{% block header %}
+    <div class="col-sm-10 col-sm-offset-2">
+        <h1 class="article-heading">All Posts</h1>
     </div>
-</div>
+{% endblock header %}
+
+{% block fab %}
+    <a href='{{SITEURL}}/blog' class="btn-floating btn-large white page-scroll">
+        <i class="md-dark material-icons">keyboard_arrow_left</i>
+    </a>
+{% endblock fab %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            {% for year, articles in dates|groupby( 'date.year' )|reverse %}
+                <div class="col-md-10 col-md-offset-2">
+                <h2>{{ year }}</h2>
+                </div>
+                <ul>
+                {% for article in articles %}
+                <div class="col-md-10 col-md-offset-2">
+                <li><a href="{{ article.url }}">{{ article.title }}</a></li>
+                </div>
+                {% endfor %}
+                </ul>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock content %}
 
-
+{% set waypoint_selector = '.article-heading' %}
+{% set back_link = SITEURL + '/blog' %}
+{% set keyboard_arrow_direction = 'keyboard_arrow_left' %}
 {% block jscripts %}
-{{ super() }}
+{{super()}}
 {% endblock jscripts %}

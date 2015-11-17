@@ -8,28 +8,21 @@
 </script>
 {% endblock analytics %}
 
-{% block content %}
-    <!-- Page Header -->
-    <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header-article">
-        <div class="intro-body">
-            <div class="container">
-                <div class="row">
-                    {% block fab %}
-                    <div class="col-sm-2 fixed-action-btn">
-                        <a href='{{SITEURL}}/' class="btn-floating btn-large white page-scroll">
-                      <i class="md-dark material-icons">keyboard_arrow_left</i>
-                    </a>
-                    </div>
-                    {% endblock fab %}
-                    <div class="col-sm-10 col-sm-offset-2">
-                    <h1 class="article-heading">Blog</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
+{% set header_class = "intro-header-article" %}
+{% set header_style = "background-image: url('{{COVER_IMG}}');" %}
+{% block header %}
+    <div class="col-sm-10 col-sm-offset-2">
+        <h1 class="article-heading">Blog</h1>
+    </div>
+{% endblock header %}
 
+{% block fab %}
+    <a href='{{SITEURL}}/' class="btn-floating btn-large white page-scroll">
+        <i class="md-dark material-icons">keyboard_arrow_left</i>
+    </a>
+{% endblock fab %}
+
+{% block content %}
 <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -47,8 +40,9 @@
     </div>
 {% endblock content %}
 
+{% set waypoint_selector = '.article-heading' %}
+{% set back_link = SITEURL + '/' %}
+{% set keyboard_arrow_direction = 'keyboard_arrow_left' %}
 {% block jscripts %}
 {{super()}}
 {% endblock jscripts %}
-
-{% block back_link %}/{% endblock back_link %}

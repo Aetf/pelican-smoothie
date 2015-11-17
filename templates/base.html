@@ -28,10 +28,10 @@
     {% endif %}
 
     {%if TWITTER_USERNAME %}
-        <meta name="twitter:creator" content="@{{TWITTER_USERNAME}}">
+    <meta name="twitter:creator" content="@{{TWITTER_USERNAME}}">
     {% endif %}
-        <meta property="og:type" content="article" />
-        <meta name="twitter:card" content="summary">
+    <meta property="og:type" content="article" />
+    <meta name="twitter:card" content="summary">
 
     {% block titletag %}
     <title>{{SITE_TITLE_LABEL}}</title>
@@ -125,14 +125,28 @@
     </div>
     {% endblock search %}
 
-    {% block header %}
-    {% endblock header%}
-
-
     {% block navigation %}
     {% endblock navigation %}
 
+    {% set header_class = header_class|default('intro') -%}
+    {% set header_style = header_style|default('') -%}
     <div class="content-block">
+        <header class="{{ header_class }}" style="{{ header_style }}">
+            <div class="intro-body">
+                <div class="container">
+                    <div class="row">
+                    {% block header %}
+                    {% endblock header%}
+                        
+                        <div class="col-sm-1 fixed-action-btn fab">
+                            {% block fab %}
+                            {% endblock fab %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
         {% block content %}
         {% endblock content %}
     </div>
@@ -146,6 +160,9 @@
     </footer>
     {% endblock footer %}
 
+    {% set waypoint_selector = waypoint_selector|default('.brand-heading') -%}
+    {% set back_link = back_link|default(SITEURL + '/blog') -%}
+    {% set keyboard_arrow_direction = keyboard_arrow_direction|default('keyboard_arrow_left') -%}
     {% block jscripts %}
     <!-- jQuery -->
     <script src="/theme/js/jquery.js"></script>
@@ -160,41 +177,31 @@
     <script src="/theme/js/pelican-smoothie.js"></script>
     <script type="text/javascript" src="{{ SITEURL }}/theme/tipuesearch/tipuesearch_set.js"></script>
     <script type="text/javascript" src="{{ SITEURL }}/theme/tipuesearch/tipuesearch.min.js"></script>
-    {% block fabscript %}
+
+    <!-- Fixed Action Button JavaScript -->
+    <script type="text/javascript" src="/theme/js/jquery.waypoints.min.js"></script>
     <script>
-        // jQuery to change FAB
-        $(window).scroll(function() {
-            var scroll = $(window).scrollTop();
-            if (scroll > window.innerHeight/6 ) {
-                $(".fixed-action-btn").addClass("scrolled");
-                $(".fixed-action-btn a.btn-large").attr("href", "#page-top")
-                $('.fixed-action-btn .btn-large .material-icons').text('keyboard_arrow_up');
-                $('.fixed-action-btn .btn-large').addClass('customcolor');
-                $('.fixed-action-btn .btn-large').removeClass('white');
-                $('.fixed-action-btn a.btn-large i').addClass('md-light');
-                $('.fixed-action-btn a.btn-large i').removeClass('md-dark');
-            }
-            if (scroll > 200 ) {
-                $(".fixed-action-btn").addClass("scrolled");
-                $(".fixed-action-btn a.btn-large").attr("href", "#page-top")
-                $('.fixed-action-btn .btn-large .material-icons').text('keyboard_arrow_up');
-                $('.fixed-action-btn .btn-large').addClass('customcolor');
-                $('.fixed-action-btn .btn-large').removeClass('white');
-                $('.fixed-action-btn a.btn-large i').addClass('md-light');
-                $('.fixed-action-btn a.btn-large i').removeClass('md-dark');
-            }
-            if (scroll < window.innerHeight/6 ) {
-                $(".fixed-action-btn").removeClass("scrolled");
-                $(".fixed-action-btn a.btn-large").attr("href", "{% block back_link %}{{SITEURL}}/blog{% endblock back_link %}")
-                $('.fixed-action-btn .btn-large .material-icons').text({% block keyboard_arrow_direction %}'keyboard_arrow_left'{% endblock keyboard_arrow_direction %});
-                $('.fixed-action-btn .btn-large').removeClass('customcolor');
-                $('.fixed-action-btn .btn-large').addClass('white');
-                $('.fixed-action-btn a.btn-large i').removeClass('md-light');
-                $('.fixed-action-btn a.btn-large i').addClass('md-dark');
+        var waypoint = new Waypoint({
+            element: $("{{ waypoint_selector }}")[0],
+            handler: function(direction) {
+                var scrolled = (direction === 'down');
+                if (scrolled) {
+                    $(".fixed-action-btn a.btn-large").attr("href", "#page-top");
+                    $('.fixed-action-btn .btn-large .material-icons')
+                        .text('keyboard_arrow_up');
+                } else {
+                    $(".fixed-action-btn a.btn-large").attr("href", "{{ back_link }}");
+                    $('.fixed-action-btn .btn-large .material-icons')
+                        .text("{{ keyboard_arrow_direction }}");
+                }
+                $('.fixed-action-btn').toggleClass('scrolled', scrolled);
+                $('.fixed-action-btn .btn-large').toggleClass('customcolor', scrolled);
+                $('.fixed-action-btn .btn-large').toggleClass('white', !scrolled);
+                $('.fixed-action-btn a.btn-large i').toggleClass('md-light', scrolled);
+                $('.fixed-action-btn a.btn-large i').toggleClass('md-dark', !scrolled);
             }
         });
     </script>
-    {% endblock fabscript %}
     {% endblock jscripts %}
 
 </body>
