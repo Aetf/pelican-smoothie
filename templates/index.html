@@ -22,29 +22,27 @@
 {% set waypoint_selector = '.avatarBox' %}
 {% set fab_main_link = SITEURL + '/blog' %}
 {% set fab_main_icon = 'menu' %}
+{% set fab_main_icon_class = 'md-dark' %}
 {% set fab_main_icon_hover = 'description' %}
-{% block fab %}
-    <ul>
-        <li>
-            <a href='#search' class="page-scroll btn-floating grey">
-                <i class="material-icons">search</i>
-            </a>
-        </li>
-        <li>
-            <a href='#about' class="page-scroll btn-floating yellow darken-1">
-                <i class="material-icons">info_outline</i>
-            </a>
-        </li>
-        <li>
-            <a href='#contact' class="page-scroll btn-floating green">
-                <i class="material-icons">forum</i>
-            </a>
-        </li>
-    </ul>
-    <a href='{{ fab_main_link }}' class="btn-floating btn-large white page-scroll">
-        <i class="material-icons md-dark">{{ fab_main_icon }}</i>
-    </a>
-{% endblock fab %}
+{% set fab_main_color = 'white' %}
+{% set fab_main_color_dark = 'blue' -%}
+{% block fabmenu %}
+    <li>
+        <a href='#search' class="page-scroll btn-floating grey">
+            <i class="material-icons">search</i>
+        </a>
+    </li>
+    <li>
+        <a href='#about' class="page-scroll btn-floating yellow darken-1">
+            <i class="material-icons">info_outline</i>
+        </a>
+    </li>
+    <li>
+        <a href='#contact' class="page-scroll btn-floating green">
+            <i class="material-icons">forum</i>
+        </a>
+    </li>
+{% endblock fabmenu %}
 
 {% block navbar_links%}
 {% endblock navbar_links%}

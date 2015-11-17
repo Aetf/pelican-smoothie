@@ -7,29 +7,24 @@ mixpanel.track("Page", {"Name": "{{AUTHOR}}", "page": "Not Found", "url": "{{out
 </script>
 {% endblock analytics %}
 
+{% set header_class = "intro-header-article" %}
+{% set header_style = "background-image: url('{{COVER_IMG}}');" %}
+{% block header %}
+    <div class="col-sm-10 col-sm-offset-2">
+        <h1 class="article-heading">Post Not Found</h1>
+    </div>
+{% endblock header %}
+
+{% set waypoint_selector = '.article-heading' %}
+{% set fab_main_link = SITEURL + '/' %}
+{% set fab_main_icon = 'keyboard_arrow_left' %}
+{% set fab_main_icon_class = 'md-light' %}
+{% set fab_main_icon_hover = 'home' %}
+{% set fab_main_color = 'grey' %}
+{% set fab_main_color_dark = 'blue' -%}
+{% block fabtoggle %} {% endblock fabtoggle %}
+
 {% block content %}
-    <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header-article">
-        <div class="intro-body">
-            <div class="container">
-                <div class="row">
-                    {% block fab %}
-                      <div class="col-sm-2 fixed-action-btn">
-                        <a href='{{SITEURL}}/blog' class="btn-floating btn-large white page-scroll">
-                          <i class="md-dark material-icons">keyboard_arrow_left</i>
-                        </a>
-                      </div>
-                    {% endblock fab %}
-                    <div class="col-sm-10 col-sm-offset-2">
-                    <h1 class="article-heading">Post Not Found</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-
-
 <div class="container">
     <div class="row">
 

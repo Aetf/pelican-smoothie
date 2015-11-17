@@ -18,12 +18,11 @@ mixpanel.track("Page", {"Name": "{{AUTHOR}}", "page": "Archives", "url": "{{outp
 {% set waypoint_selector = '.article-heading' %}
 {% set fab_main_link = SITEURL + '/blog' %}
 {% set fab_main_icon = 'keyboard_arrow_left' %}
+{% set fab_main_icon_class = 'md-light' %}
 {% set fab_main_icon_hover = 'description' %}
-{% block fab %}
-    <a href='{{ fab_main_link }}' class="btn-floating btn-large white page-scroll">
-        <i class="material-icons md-dark">{{ fab_main_icon }}</i>
-    </a>
-{% endblock fab %}
+{% set fab_main_color = 'white' %}
+{% set fab_main_color_dark = 'blue' -%}
+{% block fabtoggle %} {% endblock fabtoggle %}
 
 {% block content %}
     <div class="container">

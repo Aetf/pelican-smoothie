@@ -130,17 +130,31 @@
 
     {% set header_class = header_class|default('intro') -%}
     {% set header_style = header_style|default('') -%}
+
+    {% set waypoint_selector = waypoint_selector|default('.brand-heading') -%}
+    {% set fab_main_link = fab_main_link|default(SITEURL + '/blog') -%}
+    {% set fab_main_icon = fab_main_icon|default('keyboard_arrow_left') -%}
+    {% set fab_main_icon_class = fab_main_icon_class|default('md-dark') -%}
+    {% set fab_main_icon_hover = fab_main_icon_hover|default(fab_main_icon) -%}
+    {% set fab_main_color = fab_main_color|default('grey') -%}
+    {% set fab_main_color_dark = fab_main_color_dark|default('blue') -%}
     <div class="content-block">
         <header class="{{ header_class }}" style="{{ header_style }}">
             <div class="intro-body">
                 <div class="container">
                     <div class="row">
-                    {% block header %}
-                    {% endblock header%}
+                        {% block header %}
+                        {% endblock header%}
                         
                         <div class="col-sm-1 fixed-action-btn fab">
-                            {% block fab %}
-                            {% endblock fab %}
+                            <ul>
+                                {% block fabmenu %}
+                                {% endblock fabmenu %}
+                            </ul>
+                            <a href='{{ fab_main_link }}'
+                               class="btn-floating btn-large {{ fab_main_color }} page-scroll">
+                                <i class="material-icons {{ fab_main_icon_class }}">{{ fab_main_icon }}</i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -160,14 +174,7 @@
     </footer>
     {% endblock footer %}
 
-    {% set waypoint_selector = waypoint_selector|default('.brand-heading') -%}
-    {% set fab_main_link = fab_main_link|default(SITEURL + '/blog') -%}
-    {% set fab_main_icon = fab_main_icon|default('keyboard_arrow_left') -%}
-    {% set fab_main_icon_hover = fab_main_icon_hover|default(fab_main_icon) -%}
     {% block jscripts %}
-    <!-- Lodash -->
-    <script type="text/javascript" src="/theme/js/lodash.min.js"></script>
-
     <!-- jQuery -->
     <script src="/theme/js/jquery.js"></script>
 
@@ -199,9 +206,6 @@
             handler: function(direction) {
                 var scrolled = (direction === 'down');
                 if (scrolled) {
-                    if (!$(".fixed-action-btn ul").length) {
-                        $(".fixed-action-btn").append(document.createElement('ul'));
-                    }
                     $(".fixed-action-btn ul").append(menuItem);
 
                     $(".fixed-action-btn a.btn-large").attr("href", "#page-top");
@@ -214,10 +218,12 @@
                         .text("{{ fab_main_icon }}");
                 }
                 $('.fixed-action-btn').toggleClass('scrolled', scrolled);
-                $('.fixed-action-btn .btn-large').toggleClass('blue', scrolled);
-                $('.fixed-action-btn .btn-large').toggleClass('white', !scrolled);
+                $('.fixed-action-btn .btn-large').toggleClass('{{ fab_main_color_dark }}', scrolled);
+                $('.fixed-action-btn .btn-large').toggleClass('{{ fab_main_color }}', !scrolled);
+                {% block fabtoggle %}
                 $('.fixed-action-btn a.btn-large i').toggleClass('md-light', scrolled);
                 $('.fixed-action-btn a.btn-large i').toggleClass('md-dark', !scrolled);
+                {% endblock fabtoggle %}
             }
         });
         $(".fixed-action-btn").hover(function() {
