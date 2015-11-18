@@ -70,7 +70,7 @@ a {
 a:hover,
 a:focus {
     text-decoration: none;
-    color: #092AF6;
+    /*color: #092AF6;*/
 }
 
 .light {
@@ -187,7 +187,7 @@ a:focus {
     background-size: cover;
     -o-background-size: cover;
     background-color: #03ABF4;
-    padding: 50px 0 39px 0;
+    padding: 50px 0 50px 0;
     border-radius: 25px 25px 0px 0px;
 }
 
@@ -460,8 +460,8 @@ code {
 .material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
 
 .fixed-action-btn.fab {
-    bottom: 3em;
-    right: 1.55em;
+    bottom: 7.5%;
+    right: 3.95%;
     text-align: center;
 }
 
