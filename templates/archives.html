@@ -10,9 +10,10 @@ mixpanel.track("Page", {"Name": "{{AUTHOR}}", "page": "Archives", "url": "{{outp
 {% set header_class = "intro-header-article" %}
 {% set header_bg = COVER_IMG %}
 {% block header %}
-    <div class="col-sm-10 col-sm-offset-2">
-        <h1 class="article-heading">All Posts</h1>
-    </div>
+<div class="pure-u-5-24 pure-u-md-5-24 pure-u-lg-5-24"></div>
+<div class="pure-u-14-24 pure-u-md-14-24 pure-u-lg-14-24">
+    <h1 class="article-heading">All Posts</h1>
+</div>
 {% endblock header %}
 
 {% set waypoint_selector = '.article-heading' %}
@@ -25,20 +26,17 @@ mixpanel.track("Page", {"Name": "{{AUTHOR}}", "page": "Archives", "url": "{{outp
 {% block fabtoggle %} {% endblock fabtoggle %}
 
 {% block content %}
-    <div class="container">
-        <div class="row">
-            {% for year, articles in dates|groupby( 'date.year' )|reverse %}
-                <div class="col-md-10 col-md-offset-2">
-                <h2>{{ year }}</h2>
-                </div>
-                <ul>
-                {% for article in articles %}
-                <div class="col-md-10 col-md-offset-2">
-                <li><a href="{{ article.url }}">{{ article.title }}</a></li>
-                </div>
-                {% endfor %}
-                </ul>
+<div class="pure-g">
+    <div class="pure-u-1-6 pure-u-md-1-4 pure-u-lg-1-4"></div>
+    <div class="pure-u-2-3 pure-u-md-1-2 pure-u-lg-1-2">
+        {% for year, articles in dates|groupby( 'date.year' )|reverse %}
+        <h2>{{ year }}</h2>
+        <ul>
+            {% for article in articles %}
+            <li><a href="{{ article.url }}">{{ article.title }}</a></li>
             {% endfor %}
-        </div>
-    </div>
+        </ul>
+        {% endfor %}
+   </div>
+</div>
 {% endblock content %}

@@ -7,41 +7,33 @@
 </script>
 {% endblock analytics %}
 
-<!-- Navigation -->
-
-{% block navbar_arrow %}
-<a class="arrow-left custom-location-at-top" href="/blog"></a>
-{% endblock navbar_arrow %}
-
 {% block meta %}
     {% if article.tags or article.category or article.keywords %}
     <meta name="keywords" content="{{ [article.tags|join(', '), article.category, article.keywords]|join(', ') }}" />
     {% endif %}
 {% endblock %}
 
-
-    {% block description %}
+{% block description %}
     {% if article.summary %}
         <meta name="description" content="{{ article.summary|striptags|escape }}" />
     {% endif %}
-    {% endblock description %}
-
+{% endblock description %}
 
 {% block titletag %}
-<title>{{article.title}} - {{SITE_TITLE_LABEL}}</title>
+{{ article.title }} - {{ super() }}
 {% endblock titletag %}
-
 
 {% set header_class = "intro-header-article" %}
 {% set header_bg = article.post_bg %}
 {% block header %}
-    <div class="col-sm-10 col-sm-offset-1">
-        <h1 class="article-heading">{{ article.title }}</h1>
-        {%if article.subtitle %}
-        <h2 class="article-subheading">{{ article.subtitle }}</h2>
-        {% endif %}
-        {% include '_includes/last_updated.html' %}
-    </div>
+<div class="pure-u-5-24 pure-u-md-5-24 pure-u-lg-5-24"></div>
+<div class="pure-u-14-24 pure-u-md-14-24 pure-u-lg-14-24">
+    <h1 class="article-heading">{{ article.title }}</h1>
+    {%if article.subtitle %}
+    <h2 class="article-subheading">{{ article.subtitle }}</h2>
+    {% endif %}
+    {% include '_includes/last_updated.html' %}
+</div>
 {% endblock header %}
 
 {% set waypoint_selector = '.article-heading' %}
@@ -55,17 +47,14 @@
 
 <!-- Article Content -->
 {% block content %}
+<div class="pure-u-5-24 pure-u-md-5-24 pure-u-lg-5-24"></div>
+<div class="pure-u-14-24 pure-u-md-14-24 pure-u-lg-14-24">
     <article>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 col-lg-offset-1">
-                    <div class="entry-content">
-                    {{ article.content }}
-                    </div>
-                    {% include '_includes/comments.html' %}
-                </div>
-            </div>
+        <div class="entry-content">
+            {{ article.content }}
         </div>
+        {% include '_includes/comments.html' %}
     </article>
-    <hr>
+</div>
+<hr>
 {% endblock content %}

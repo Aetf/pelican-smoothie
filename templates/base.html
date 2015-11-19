@@ -33,9 +33,12 @@
     <meta property="og:type" content="article" />
     <meta name="twitter:card" content="summary">
 
-    {% block titletag %}
-    <title>{{SITE_TITLE_LABEL}}</title>
-    {% endblock titletag %}
+    <title>
+        {% block titletag %}{{SITE_TITLE_LABEL}}{% endblock titletag %}
+    </title>
+
+    {% block meta %}
+    {% endblock meta %}
 
     <!-- iPython Notebook script -->
     <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" 
@@ -80,8 +83,14 @@
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
     </script>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="/theme/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Pure CSS Base and Grid-->
+    <link rel="stylesheet" href="http://yui.yahooapis.com/combo?pure/0.6.0/base-min.css&pure/0.6.0/grids-min.css">
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-old-ie-min.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+    <!--<![endif]-->
 
     <!-- Materialize CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
@@ -91,14 +100,18 @@
 
     <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href="/theme/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Arvo" rel="stylesheet" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Permanent+Marker|Pacifico|Nova+Round|EB+Garamond|Kaushan+Script' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Lobster+Two' rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Tipue Search CSS for search box-->
+    <link href="/theme/tipuesearch/tipuesearch.css" rel="stylesheet">
+
     <!-- Custom CSS -->
     <link href="/theme/css/pelican-smoothie.css" rel="stylesheet">
     <link href="/theme/css/pygment.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ SITEURL }}/theme/tipuesearch/tipuesearch.css">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -116,8 +129,11 @@
 
     {% block search %}
     <div class="search-button">
-        <form id="search" class="floating-search" action="{{SITE_URL}}/search.html" onsubmit="return validateForm(this.elements['q'].value);">
-        <input type="search" class="search-query" placeholder="Search" name="q"></form>
+        <form id="search" class="floating-search"
+              action="{{SITEURL}}/search.html"
+              onsubmit="return validateForm(this.elements['q'].value);">
+            <input type="search" class="search-query" placeholder="Search" name="q">
+        </form>
     </div>
     {% endblock search %}
 
@@ -133,52 +149,34 @@
     {% set fab_main_color_dark = fab_main_color_dark|default('blue') -%}
     <!--<div class="content-block">-->
     <div class="content-block">
-        <header class="{{ header_class }}"
-                {% if header_bg %}
-                style="background-image: url('{{header_bg}}');"
-                {% endif %}>
-            <div class="intro-body">
-                <div class="container">
-                    <div class="row">
-                        {% block header %}
-                        {% endblock header%}
-                        
-                        <div class="col-sm-1 fixed-action-btn fab">
-                            <ul>
-                                {% block fabmenu %}
-                                {% endblock fabmenu %}
-                            </ul>
-                            <a href='{{ fab_main_link }}'
-                               class="btn-floating btn-large {{ fab_main_color }} page-scroll">
-                                <i class="material-icons {{ fab_main_icon_class }}">{{ fab_main_icon }}</i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <header class="{{ header_class }} pure-g"
+                {% if header_bg %}style="background-image: url('{{header_bg}}');"{% endif %}>
+            {% block header %}
+            {% endblock header%}
         </header>
         {% block navigation %}
-            <div class="ucw-nav" style="position: relative; top: -64px;">
-            <nav>
-                <div class="nav-wrapper blue lighten-1">
-                    <a href="#" class="brand-logo">Logo</a>
-                    <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li><a href="#"><i class="material-icons">search</i></a></li>
-                        <li><a href="#"><i class="material-icons">info</i></a></li>
-                        <li><a href="#"><i class="material-icons">menu</i></a></li>
-                    </ul>
-                </div>
-            </nav>
-            </div>
+
         {% endblock navigation %}
-        {% block content %}
-        {% endblock content %}
+        <div class="fixed-action-btn fab">
+            <ul>
+                {% block fabmenu %}
+                {% endblock fabmenu %}
+            </ul>
+            <a href='{{ fab_main_link }}'
+               class="btn-floating btn-large {{ fab_main_color }} page-scroll">
+                <i class="material-icons {{ fab_main_icon_class }}">{{ fab_main_icon }}</i>
+            </a>
+        </div>
+        <main class="pure-g">
+            {% block content %}
+            {% endblock content %}
+        </main>
     </div>
 
     {% block footer %}
     <!-- Footer -->
     <footer>
-        <div id="footer" class="container text-center">
+        <div id="footer" class="center-align">
             {{SITE_LICENSE}}
         </div>
     </footer>
@@ -192,7 +190,7 @@
     <script src="/theme/js/jquery.easing.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="/theme/js/bootstrap.min.js"></script>
+    <!--<script src="/theme/js/bootstrap.min.js"></script>-->
 
     <!-- Materialize JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>

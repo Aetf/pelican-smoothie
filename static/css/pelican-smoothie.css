@@ -179,7 +179,6 @@ a:focus {
     /*margin-bottom: 5em;*/
     height: auto;
     width: 100%;
-    text-align: center;
     color: #fff;
     background: no-repeat bottom center scroll;
     -webkit-background-size: cover;
@@ -225,13 +224,19 @@ a:focus {
 .intro-header-article p { margin: 0; }
 .intro-header-article .date { margin-top: 2rem; }
 
-.intro .intro-body {
+.intro {
     vertical-align: middle;
 }
 
-.intro .intro-body .brand-heading {
+.intro .brand-heading {
     font-size: 40px;
     font-family: 'Nova Round', cursive;
+    color: white;
+}
+
+.intro .intro-text {
+    font-size: 18px;
+    font-family: 'Permanent Marker', cursive;
     color: white;
 }
 
@@ -245,12 +250,6 @@ a:focus {
     color: white;
 }
 
-.intro .intro-body .intro-text {
-    font-size: 18px;
-    font-family: 'Permanent Marker', cursive;
-    color: white;
-}
-
 .intro-header-article .article-subheading {
     font-family: 'Permanent Marker', cursive;
 }
@@ -260,11 +259,11 @@ a:focus {
         height: 100%;
     }
 
-    .intro .intro-body .brand-heading {
+    .intro .brand-heading {
         font-size: 40px;
     }
 
-    .intro .intro-body .intro-text {
+    .intro .intro-text {
         font-size: 26px;
     }
 }
@@ -447,7 +446,7 @@ code {
 }
 
 #about {
-    padding-top: 0px;
+    padding-top: 2em;
 }
 
 
@@ -495,7 +494,7 @@ code {
 
 @media(min-width:767px) {
     #about {
-        padding-top: 0px;
+        padding-top: 4em;
     }
 
     .content-section {
@@ -701,4 +700,9 @@ div[aria-expanded="true"] {
 .navbar-fixed nav {
     top: 0;
     width: 95%;
+}
+
+.btn.social-btn {
+    border-radius: 5px;
+    margin: 0.5em 0 0.5em 0
 }

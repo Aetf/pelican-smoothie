@@ -10,13 +10,16 @@
 {% set header_class = "intro" %}
 {% set header_bg = COVER_IMG %}
 {% block header %}
-    <div class="avatarBox col-sm-12">
+<div class="pure-u-1-4 pure-u-md-1-4 pure-u-lg-1-4"></div>
+<div class="pure-u-1-2 pure-u-md-1-2 pure-u-lg-1-2 center-align">
+    <div class="avatarBox">
         <img src="{{AVATAR_IMG}}">
     </div>
-    <div class="col-sm-12">
+    <div class="">
         <h1 class="brand-heading">{{SITE_TITLE_LABEL}}</h1>
         <p class="intro-text">{{SITE_SUBTITLE_LABEL}}</p>
     </div>
+</div>
 {% endblock header%}
 
 {% set waypoint_selector = '.avatarBox' %}
@@ -48,24 +51,21 @@
 {% endblock navbar_links%}
 
 {% block content %}
-
+<div class="pure-u-5-24 pure-u-md-5-24 pure-u-lg-5-24"></div>
+<div class="pure-u-14-24 pure-u-md-14-24 pure-u-lg-14-24">
     {% block about %}
     <!-- About Section -->
-    <section id="about" class="container content-section text-center" href="#">
-        <div class="row">
-            <div class="col-lg-10 col-lg-offset-1">
-                <h2>About Me</h2>
-                {{LANDING_PAGE_ABOUT['details']}}
-            </div>
-        </div>
+    <section id="about" class="content-section text-center" href="#">
+        <h2 class="center-align">About Me</h2>
+        {{LANDING_PAGE_ABOUT['details']}}
     </section>
     {% endblock about %}
 
     {% block contact %}
     <!-- Contact Section -->
-    <section id="contact" class="container content-section text-center" href="#">
+    <section id="contact" class="content-section" href="#">
         {% include '_includes/social_links.html' %}
     </section>
     {% endblock contact %}
-
+</div>
 {% endblock content %}

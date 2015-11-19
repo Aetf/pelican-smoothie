@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 
-
 {% block analytics %}
 {{ super() }}
 <script>
@@ -11,9 +10,10 @@
 {% set header_class = "intro-header-article" %}
 {% set header_bg = COVER_IMG %}
 {% block header %}
-    <div class="col-sm-10 col-sm-offset-2">
-        <h1 class="article-heading">Blog</h1>
-    </div>
+<div class="pure-u-5-24 pure-u-md-5-24 pure-u-lg-5-24"></div>
+<div class="pure-u-14-24 pure-u-md-14-24 pure-u-lg-14-24">
+    <h1 class="article-heading">Blog</h1>
+</div>
 {% endblock header %}
 
 {% set waypoint_selector = '.article-heading' %}
@@ -23,22 +23,54 @@
 {% set fab_main_icon_hover = 'home' %}
 {% set fab_main_color = 'grey' %}
 {% set fab_main_color_dark = 'blue' -%}
+{% block fabmenu %}
+    <li>
+        <a href='/archives.html' class="page-scroll btn-floating green">
+            <i class="material-icons">storage</i>
+        </a>
+    </li>
+{% endblock fabmenu %}
 {% block fabtoggle %} {% endblock fabtoggle %}
 
-{% block content %}
-<div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            {% for article in dates %}
-            <div class="post-preview">
-                    <a class="blog-index-title" href="{{ SITEURL }}/{{ article.url }}"><h1 class="post-title">{{ article.title }}</h2>
-                    {%if article.subtitle %} <h2 class="post-subtitle">{{ article.subtitle }} </h3>{% endif %} </a>
-                    <p class="post-meta">Posted on <time pubdate="pubdate" datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time></p>
-                </div>
-              <div class="entry-content">{{ article.summary }}</div>
-                <a rel="full-article" href="{{ SITEURL }}/{{ article.url }}" class="waves-effect waves-light btn btn-default"><i class="material-icons right"></i>Read On</a>
-            {% endfor %}
-           </div>
+{% block navigation %}
+<div class="ucw-nav" style="position: relative; top: -64px;">
+    <nav>
+        <div class="nav-wrapper blue lighten-1">
+            <div class="">
+               <a href="#!" class="breadcrumb">First</a>
+               <a href="#!" class="breadcrumb">Second</a>
+               <a href="#!" class="breadcrumb">Third</a> 
+            </div>
         </div>
-    </div>
+    </nav>
+</div>
+{% endblock navigation %}
+
+{% block content %}
+<div class="pure-g">
+    <div class="pure-u-1-6 pure-u-md-1-4 pure-u-lg-1-4"></div>
+    <div class="pure-u-2-3 pure-u-md-1-2 pure-u-lg-1-2">
+        {% for article in dates %}
+            <div class="post-preview">
+                    <a class="blog-index-title" href="{{ SITEURL }}/{{ article.url }}">
+                        <h2 class="post-title">{{ article.title }}</h2>
+                        {%if article.subtitle %}
+                            <h3 class="post-subtitle">{{ article.subtitle }}</h3>
+                        {% endif %}
+                    </a>
+                    <p class="post-meta">
+                        Posted on
+                        <time pubdate="pubdate" datetime="{{ article.date.isoformat() }}">
+                            {{ article.locale_date }}
+                        </time>
+                    </p>
+            </div>
+            <div class="entry-content">{{ article.summary }}</div>
+            <a rel="full-article" href="{{ SITEURL }}/{{ article.url }}"
+               class="waves-effect waves-light btn btn-default">
+                <i class="material-icons right"></i>Read On
+            </a>
+        {% endfor %}
+   </div>
+</div>
 {% endblock content %}
