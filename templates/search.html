@@ -5,10 +5,6 @@
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
 
 <link href="/theme/tipuesearch/tipuesearch.css" rel="stylesheet">
-
-<script src="/theme/tipuesearch/tipuesearch_content.js"></script>
-<script src="/theme/tipuesearch/tipuesearch_set.js"></script>
-<script src="/theme/tipuesearch/tipuesearch.min.js"></script>
 {% endblock meta %}
 
 {% block titletag %}
@@ -36,39 +32,38 @@ Search - {{- super() -}}
 {% block content %}
 <div class="pure-u-5-24 pure-u-md-5-24 pure-u-lg-5-24"></div>
 <div class="pure-u-14-24 pure-u-md-14-24 pure-u-lg-14-24">
-    <div class="entry-content">
-        <div class="search-button">
-            <form id="search" class="floating-search"
-                  action="{{SITEURL}}/search.html"
-                  onsubmit="return validateForm(this.elements['q'].value);">
-                <input id="tipue_search_input" type="search" class="search-query" placeholder="Search" name="q">
-            </form>
+    <div class="search-button">
+        <form id="search" class="floating-search"
+              action="{{SITEURL}}/search.html"
+              onsubmit="return validateForm(this.elements['q'].value);">
+            <input id="tipue_search_input" class="search-query"
+                    type="search" name="q" autocomplete=off
+                    placeholder="Search">
+        </form>
+    </div>
+    <div id="tipue_search_content">
+        <div class="tipue_search_spinner">
+            <div class="tipue_search_rect1"></div>
+            <div class="tipue_search_rect2"></div>
+            <div class="rect3"></div>
         </div>
-        <div id="tipue_search_content"></div>
     </div>
 </div>
 <hr>
-
-<script>
-    $(document).ready(function() {
-        $('#tipue_search_input').tipuesearch();
-    });
-</script>
 {% endblock content %}
 
-<!--
-            {% for article in dates %}
-            <div class="post-preview">
-                    <a class="blog-index-title" href="{{ SITEURL }}/{{ article.url }}"><h1 class="post-title">{{ article.title }}</h2>
-                    {%if article.subtitle %} <h2 class="post-subtitle">{{ article.subtitle }} </h3>{% endif %} </a>
-                    <p class="post-meta">Posted on <time pubdate="pubdate" datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time></p>
-                </div>
-              <div class="entry-content">{{ article.summary }}</div>
-                <a rel="full-article" href="{{ SITEURL }}/{{ article.url }}" class="waves-effect waves-light btn btn-default"><i class="material-icons right"></i>Read On</a>
-            {% endfor %}
-           </div>
-        </div>
-    </div>
-
-
--->
+{% block jscripts %}
+{{ super() }}
+<!-- Tipue Search scripts -->
+<script src="/theme/tipuesearch/tipuesearch_set.js"></script>
+<script src="/theme/tipuesearch/tipuesearch.custom.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#tipue_search_input').tipuesearch({
+            showTitleCount: false,
+            mode: 'json',
+            contentLocation: '{{- SITEURL -}}/tipuesearch_content.json'
+        });
+    });
+</script>
+{% endblock jscripts %}

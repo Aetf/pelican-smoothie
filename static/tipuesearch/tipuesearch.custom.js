@@ -368,9 +368,11 @@ http://www.tipue.com/search
                               for (var i = 0; i < found.length; i++)
                               {
                                    if (l_o >= start && l_o < set.show + start)
-                                   {                                   
-                                        out += '<div class="tipue_search_content_title"><a href="' + found[i].url + '"' + tipue_search_w + '>' +  found[i].title + '</a></div>';
- 
+                                   {
+                                        out += '<div class="post-preview">';
+                                        out += '    <a class="blog-index-title" href="' + found[i].url + '"' + tipue_search_w + '>';
+                                        out += '        <h2 class="post-title">' + found[i].title + '</h2>';
+                                        out += '    </a>';
                                         if (set.debug)
                                         {                                             
                                              out += '<div class="tipue_search_content_debug">Score: ' + found[i].score + '</div>';
@@ -382,8 +384,10 @@ http://www.tipue.com/search
                                              if(s_u.indexOf('http://') == 0)
                                              {
                                                   s_u = s_u.slice(7);
-                                             }                                             
-                                             out += '<div class="tipue_search_content_url"><a href="' + found[i].url + '"' + tipue_search_w + '>' + s_u + '</a></div>';
+                                             }
+                                             out += '    <p class="post-meta">';
+                                             out += '        <cite class="tipue_search_url">' + s_u + '</cite>';
+                                             out += '    </p>';
                                         }
                                         
                                         if (found[i].desc)
@@ -407,8 +411,9 @@ http://www.tipue.com/search
                                              {
                                                   t_d += ' ...';
                                              }
-                                             out += '<div class="tipue_search_content_text">' + t_d + '</div>';
+                                             out += '<div class="entry-content">' + t_d + '</div>';
                                         }
+                                        out += '</div>';
                                    }
                                    l_o++;     
                               }
