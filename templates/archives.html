@@ -33,17 +33,15 @@ mixpanel.track("Page", {"Name": "{{AUTHOR}}", "page": "Archives", "url": "{{outp
 {% block fabtoggle %} {% endblock fabtoggle %}
 
 {% block content %}
-<div class="pure-g">
-    <div class="pure-u-1-6 pure-u-md-1-4 pure-u-lg-1-4"></div>
-    <div class="pure-u-2-3 pure-u-md-1-2 pure-u-lg-1-2">
-        {% for year, articles in dates|groupby( 'date.year' )|reverse %}
-        <h2>{{ year }}</h2>
-        <ul>
-            {% for article in articles %}
-            <li><a href="{{ article.url }}">{{ article.title }}</a></li>
-            {% endfor %}
-        </ul>
+<div class="pure-u-1-6 pure-u-md-1-4 pure-u-lg-1-4"></div>
+<div class="pure-u-2-3 pure-u-md-1-2 pure-u-lg-1-2">
+    {% for year, articles in dates|groupby( 'date.year' )|reverse %}
+    <h2>{{ year }}</h2>
+    <ul>
+        {% for article in articles %}
+        <li><a href="{{ article.url }}">{{ article.title }}</a></li>
         {% endfor %}
-   </div>
+    </ul>
+    {% endfor %}
 </div>
 {% endblock content %}
