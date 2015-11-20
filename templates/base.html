@@ -101,6 +101,7 @@
 
     {% set waypoint_selector = waypoint_selector|default('.brand-heading') -%}
     {% set fab_main_link = fab_main_link|default(SITEURL + '/blog') -%}
+    {% set fab_main_label = fab_main_label|default('Blog') -%}
     {% set fab_main_icon = fab_main_icon|default('keyboard_arrow_left') -%}
     {% set fab_main_icon_class = fab_main_icon_class|default('md-dark') -%}
     {% set fab_main_icon_hover = fab_main_icon_hover|default(fab_main_icon) -%}
@@ -136,7 +137,7 @@
                 {% block fabmenu %}
                 {% endblock fabmenu %}
             </ul>
-            <a href='{{ fab_main_link }}'
+            <a href='{{ fab_main_link }}' fab-label='{{ fab_main_label }}'
                class="btn-floating btn-large {{ fab_main_color }} page-scroll">
                 <i class="material-icons {{ fab_main_icon_class }}">{{ fab_main_icon }}</i>
             </a>
@@ -211,6 +212,7 @@
         var menuItem = $(document.createElement('li'))
             .append($(document.createElement('a'))
                 .attr("href", "{{ fab_main_link }}")
+                .attr("fab-label", "{{ fab_main_label }}")
                 .addClass('page-scroll btn-floating red')
                 .append($(document.createElement('i'))
                     .addClass('material-icons')
@@ -225,11 +227,13 @@
                     $(".fixed-action-btn ul").append(menuItem);
 
                     $(".fixed-action-btn a.btn-large").attr("href", "#page-top");
+                    $(".fixed-action-btn a.btn-large").attr("fab-label", "Back to Top");
                     $('.fixed-action-btn .btn-large .material-icons')
                         .text('keyboard_arrow_up');
                 } else {
                     menuItem.detach();
                     $(".fixed-action-btn a.btn-large").attr("href", "{{ fab_main_link }}");
+                    $(".fixed-action-btn a.btn-large").attr("fab-label", "{{ fab_main_label }}");
                     $('.fixed-action-btn .btn-large .material-icons')
                         .text("{{ fab_main_icon }}");
                 }

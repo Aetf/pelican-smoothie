@@ -18,6 +18,7 @@ mixpanel.track("Page", {"Name": "{{AUTHOR}}", "page": "Archives", "url": "{{outp
 
 {% set waypoint_selector = '.article-heading' %}
 {% set fab_main_link = SITEURL + '/blog' %}
+{% set fab_main_label = 'Blog' %}
 {% set fab_main_icon = 'keyboard_arrow_left' %}
 {% set fab_main_icon_class = 'md-light' %}
 {% set fab_main_icon_hover = 'description' %}
@@ -25,7 +26,7 @@ mixpanel.track("Page", {"Name": "{{AUTHOR}}", "page": "Archives", "url": "{{outp
 {% set fab_main_color_dark = 'blue' -%}
 {% block fabmenu %}
     <li>
-        <a href='#search' class="page-scroll btn-floating grey">
+        <a href='#search' class="page-scroll btn-floating grey" fab-label='Search'>
             <i class="material-icons">search</i>
         </a>
     </li>

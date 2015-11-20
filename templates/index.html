@@ -24,24 +24,25 @@
 
 {% set waypoint_selector = '.avatarBox' %}
 {% set fab_main_link = SITEURL + '/blog' %}
+{% set fab_main_label = 'Blog' %}
 {% set fab_main_icon = 'menu' %}
 {% set fab_main_icon_class = 'md-dark' %}
 {% set fab_main_icon_hover = 'description' %}
 {% set fab_main_color = 'white' %}
-{% set fab_main_color_dark = 'blue' -%}
+{% set fab_main_color_dark = 'blue' %}
 {% block fabmenu %}
     <li>
-        <a href='#search' class="page-scroll btn-floating grey">
+        <a href='#search' class="page-scroll btn-floating grey" fab-label='Search'>
             <i class="material-icons">search</i>
         </a>
     </li>
     <li>
-        <a href='#about' class="page-scroll btn-floating yellow darken-1">
+        <a href='#about' class="page-scroll btn-floating yellow darken-1" fab-label='About Me'>
             <i class="material-icons">info_outline</i>
         </a>
     </li>
     <li>
-        <a href='#contact' class="page-scroll btn-floating green">
+        <a href='#contact' class="page-scroll btn-floating green" fab-label='Contact Me'>
             <i class="material-icons">forum</i>
         </a>
     </li>
