@@ -56,8 +56,10 @@ $(function(){
                 $fab.find('.btn-large .material-icons').text(ucw.fab_main_icon);
             }
             $fab.toggleClass('scrolled', scrolled);
-            $fab.find('.btn-large').toggleClass(ucw.fab_main_color_dark, scrolled);
-            $fab.find('.btn-large').toggleClass(ucw.fab_main_color, !scrolled);
+            if (ucw.fab_main_color !== ucw.fab_main_color_dark) {
+                $fab.find('.btn-large').toggleClass(ucw.fab_main_color, !scrolled);
+                $fab.find('.btn-large').toggleClass(ucw.fab_main_color_dark, scrolled);
+            }
             ucw.fab_toggled_state(scrolled);
         }
     });
