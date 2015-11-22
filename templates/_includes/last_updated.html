@@ -1,18 +1,27 @@
 <span class="meta last-updated">
-	{% if article.locale_modified and article.modified %}
-	Updated on 
-	{% set day = article.modified.strftime('%d')|int %}
-	<time datetime="{{ article.modified.isoformat() }}">
-		{{ article.modified.strftime('%b') }} {{ day }} {{- article.modified.strftime(', %Y') }}
-	</time>
-	{% elif article.modified %}
-	Updated on
-	<div class="last-updated">{{ article.modified }}</div>
+	{%- if article.locale_modified and article.modified -%}
+		Updated on
+		<time datetime="{{- article.modified.isoformat() -}}">
+			{{- article.locale_modified -}}
+		</time>
+	{%- elif article.modified -%}
+		Updated on
+		<time datetime="{{- article.modified.isoformat() -}}">
+			{{- article.modified | strftime('%Y-%m-%d') -}}
+		</time>
+	{%- endif -%}
+
+	{%- if article.modified and article.date -%},{%- endif -%}
+
+	{% if article.locale_date and article.date %}
+		Published on
+		<time pubdate="pubdate" datetime="{{- article.date.isoformat() -}}">
+			{{- article.locale_date -}}
+		</time>
 	{% elif article.date %}
-	Published on 
-	{% set day = article.date.strftime('%d')|int %}
-	<time pubdate="pubdate" datetime="{{ article.date.isoformat() }}">
-		{{ article.date.strftime('%b') }} {{ day }} {{- article.date.strftime(', %Y') }}
-	</time>
+		Published on
+		<time pubdate="pubdate" datetime="{{- article.date.isoformat() -}}">
+			{{- article.date | strftime('%Y-%m-%d') -}}
+		</time>
 	{% endif %}
 </span>

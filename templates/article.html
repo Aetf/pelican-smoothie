@@ -26,14 +26,19 @@
 {% set header_class = "intro-header-article" %}
 {% set header_bg = article.post_bg %}
 {% block header %}
-<div class="pure-u-5-24 pure-u-md-5-24 pure-u-lg-5-24"></div>
-<div class="pure-u-14-24 pure-u-md-14-24 pure-u-lg-14-24">
-    <h1 class="article-heading">{{ article.title }}</h1>
+    <h1 class="article-heading center-align">{{ article.title }}</h1>
     {%if article.subtitle %}
-    <h2 class="article-subheading">{{ article.subtitle }}</h2>
+    <h2 class="article-subheading right-align">{{ article.subtitle }}</h2>
     {% endif %}
-    {% include '_includes/last_updated.html' %}
-</div>
+
+    <div class="article-meta-wrapper">
+        <div class="article-meta">
+            <div class="pure-u-5-24 pure-u-md-5-24 pure-u-lg-5-24"></div>
+            <div class="pure-u-14-24 pure-u-md-14-24 pure-u-lg-14-24">
+                {% include '_includes/last_updated.html' %}
+            </div>
+        </div>
+    </div>
 {% endblock header %}
 
 {% set waypoint_selector = '.article-heading' %}
@@ -55,8 +60,8 @@
 
 <!-- Article Content -->
 {% block content %}
-<div class="pure-u-5-24 pure-u-md-5-24 pure-u-lg-5-24"></div>
-<div class="pure-u-14-24 pure-u-md-14-24 pure-u-lg-14-24">
+<div class="pure-u-5-24 pure-u-md-5-24 pure-u-lg-4-24"></div>
+<div class="pure-u-14-24 pure-u-md-14-24 pure-u-lg-16-24">
     <article>
         <div class="entry-content">
             {{ article.content }}
