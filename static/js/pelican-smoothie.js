@@ -39,25 +39,25 @@ $(function(){
         element: $(ucw.waypoint_selector)[0],
         handler: function(direction) {
             var scrolled = (direction === 'down');
+            var $fab = $(".fixed-action-btn.fab");
             if (scrolled) {
-                $(".fixed-action-btn.fab ul").append(menuItem);
+                $fab.find("ul").append(menuItem);
                 // ensure appended item is displayed
-                $(".fixed-action-btn.fab").openFAB();
+                if ($fab.hasClass("active"))
+                    $fab.closeFAB();
 
-                $(".fixed-action-btn.fab a.btn-large").attr("href", "#page-top");
-                $(".fixed-action-btn.fab a.btn-large").attr("fab-label", "Back to Top");
-                $('.fixed-action-btn.fab .btn-large .material-icons')
-                    .text('keyboard_arrow_up');
+                $fab.find("a.btn-large").attr("href", "#page-top");
+                $fab.find("a.btn-large").attr("fab-label", "Back to Top");
+                $fab.find('.btn-large .material-icons').text('keyboard_arrow_up');
             } else {
                 menuItem.detach();
-                $(".fixed-action-btn a.btn-large").attr("href", ucw.fab_main_link);
-                $(".fixed-action-btn a.btn-large").attr("fab-label", ucw.fab_main_label);
-                $('.fixed-action-btn .btn-large .material-icons')
-                    .text(ucw.fab_main_icon);
+                $fab.find("a.btn-large").attr("href", ucw.fab_main_link);
+                $fab.find("a.btn-large").attr("fab-label", ucw.fab_main_label);
+                $fab.find('.btn-large .material-icons').text(ucw.fab_main_icon);
             }
-            $('.fixed-action-btn').toggleClass('scrolled', scrolled);
-            $('.fixed-action-btn .btn-large').toggleClass(ucw.fab_main_color_dark, scrolled);
-            $('.fixed-action-btn .btn-large').toggleClass(ucw.fab_main_color, !scrolled);
+            $fab.toggleClass('scrolled', scrolled);
+            $fab.find('.btn-large').toggleClass(ucw.fab_main_color_dark, scrolled);
+            $fab.find('.btn-large').toggleClass(ucw.fab_main_color, !scrolled);
             ucw.fab_toggled_state(scrolled);
         }
     });
