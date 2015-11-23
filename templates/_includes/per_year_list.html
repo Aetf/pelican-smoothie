@@ -1,0 +1,12 @@
+{% for groupTitle, groupList in dates | groupby('date.month') | reverse %}
+    <h2>
+    	<a href="{{- MONTH_ARCHIVE_URL | strfmt(date=groupList[0].date) | absurl -}}">
+    	{{ groupList[0].date | strftime('%B') }}
+    	</a>
+    </h2>
+    <ul>
+        {% for article in groupList %}
+        <li><a href="{{ article.url }}">{{ article.title }}</a></li>
+        {% endfor %}
+    </ul>
+{% endfor %}
