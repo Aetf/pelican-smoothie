@@ -286,8 +286,11 @@ hr {
 }
 
 .intro .brand-heading {
+    margin: 50px 0 25px 0;
     font-size: 40px;
+    font-weight: 700;
     font-family: 'Nova Round', cursive;
+    letter-spacing: 1px;
     color: white;
 }
 
