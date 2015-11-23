@@ -236,6 +236,7 @@ hr {
 .intro-header-article .article-heading, .intro-header-page .article-heading {
     font-family: 'Nova Round', cursive;
     font-size: 4rem;
+    font-weight: 700;
     margin: 0;
     color: white;
     letter-spacing: 1px;
