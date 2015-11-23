@@ -85,11 +85,15 @@ $(function(){
         if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
              && location.hostname == this.hostname) {
             var target = $(this.hash);
+            var nav = $('.ucw-nav nav');
             target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
             if (target.length) {
-                var offset = $('.ucw-nav nav').length ? $('.ucw-nav nav').height() : 0;
+                var scrollTop = target.offset().top;
+                if (nav.length && scrollTop > nav.offset().top ) {
+                    scrollTop += nav.height();
+                }
                 $('html,body').stop().animate({
-                    scrollTop: target.offset().top + offset
+                    scrollTop: scrollTop
                 }, 1000, 'easeInOutExpo');
                 return false;
             }
