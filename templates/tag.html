@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block analytics %}
+{{ super() }}
+<script>
+mixpanel.track("Page", {"Name": "{{AUTHOR}}", "page": "Tag: {{tag}}", "url": "{{output_file}}" });
+</script>
+{% endblock analytics %}
+
+{% set header_class = "intro-header-page" %}
+{% set header_bg = COVER_IMG %}
+{% block header %}
+<div class="pure-u-5-24 pure-u-md-5-24 pure-u-lg-5-24"></div>
+<div class="pure-u-14-24 pure-u-md-14-24 pure-u-lg-14-24">
+    <h1 class="article-heading">Tag: {{ tag -}}</h1>
+</div>
+{% endblock header %}
+
+{% set waypoint_selector = '.article-heading' %}
+{% set fab_main_link = 'tags' %}
+{% set fab_main_label = 'Tags' %}
+{% set fab_main_icon = 'keyboard_arrow_left' %}
+{% set fab_main_icon_class = 'md-light' %}
+{% set fab_main_icon_hover = 'local_offer' %}
+{% set fab_main_color = 'blue' %}
+{% set fab_main_color_dark = 'blue' -%}
+{% block fabmenu %}
+    <li>
+        <a href='#search' class="page-scroll btn-floating grey" fab-label='Search'>
+            <i class="material-icons">search</i>
+        </a>
+    </li>
+{% endblock fabmenu %}
+{% block fabtoggle %} {% endblock fabtoggle %}
+
+{% block content %}
+<div class="pure-u-1-6 pure-u-md-1-4 pure-u-lg-5-24"></div>
+<div class="pure-u-2-3 pure-u-md-1-2 pure-u-lg-14-24">
+    <ul>
+        {% for article in articles %}
+        <li><a href="{{ article.url | absurl }}">{{ article.title }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock content %}

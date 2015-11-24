@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+<link href="/theme/tx3TagCloud/tx3-tag-cloud.css" rel="stylesheet">
+{% endblock meta %}
+
+{% block analytics %}
+{{ super() }}
+<script>
+    mixpanel.track("Page", {"Name": "Tags", "url": "{{output_file}}"  }) ;
+</script>
+{% endblock analytics %}
+
+{% block titletag %}
+Tag Cloud - {{ super() }}
+{% endblock titletag %}
+
+{% set header_class = "intro-header-page" %}
+{% set header_bg = COVER_IMG %}
+{% block header %}
+<div class="pure-u-5-24 pure-u-md-5-24 pure-u-lg-5-24"></div>
+<div class="pure-u-14-24 pure-u-md-14-24 pure-u-lg-14-24">
+    <h1 class="article-heading">Tag Cloud</h1>
+</div>
+{% endblock header %}
+
+{% set waypoint_selector = '.article-heading' %}
+{% set fab_main_link = 'blog' %}
+{% set fab_main_label = 'Blog' %}
+{% set fab_main_icon = 'keyboard_arrow_left' %}
+{% set fab_main_icon_class = 'md-light' %}
+{% set fab_main_icon_hover = 'description' %}
+{% set fab_main_color = 'blue' %}
+{% set fab_main_color_dark = 'blue' -%}
+{% block fabmenu %}
+    <li>
+        <a href='#search' class="page-scroll btn-floating grey" fab-label='Search'>
+            <i class="material-icons">search</i>
+        </a>
+    </li>
+{% endblock fabmenu %}
+{% block fabtoggle %} {% endblock fabtoggle %}
+
+<!-- Page Content -->
+{% block content %}
+<div class="pure-u-5-24 pure-u-md-5-24 pure-u-lg-5-24"></div>
+<div class="pure-u-14-24 pure-u-md-14-24 pure-u-lg-14-24">
+    <div class="entry-content">
+        <ul class="tagcloud">
+            {% for tag, weight in tag_cloud %}
+            <li data-weight="{{- weight -}}">
+                <a href="{{- tag.url | absurl -}}">{{ tag.name }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+<hr>
+{% endblock content %}
+
+{% block jscripts %}
+{{ super() }}
+<!-- tx3TagCloud scripts -->
+<script src="/theme/tx3TagCloud/jquery.tx3-tag-cloud.js"></script>
+<script>
+    $(function() {
+        $(".tagcloud").tx3TagCloud({
+            multiplier: 5
+        });
+    });
+</script>
+{% endblock jscripts %}
