@@ -76,11 +76,11 @@ mixpanel.track("Page", {"Name": "{{AUTHOR}}", "page": "Period Archives", "url": 
 <div class="pure-u-1-6 pure-u-md-1-4 pure-u-lg-5-24"></div>
 <div class="pure-u-2-3 pure-u-md-1-2 pure-u-lg-14-24">
     {% if period|length == 3 %}
-        {% include '_includes/per_day_list.html' %}
+        {% include '_includes/per_day_list.jinja.html' %}
     {% elif period|length == 2 %}
-        {% include '_includes/per_month_list.html' %}
+        {% include '_includes/per_month_list.jinja.html' %}
     {% else %}
-        {% include '_includes/per_year_list.html' %}
+        {% include '_includes/per_year_list.jinja.html' %}
     {% endif%}
 </div>
 {% endblock content %}
