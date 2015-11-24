@@ -691,6 +691,10 @@ div[aria-expanded="true"] {
     font-size: 2rem;
 }
 
+.ucw-nav {
+    position: relative;
+}
+
 .ucw-nav .nav-wrapper {
     padding: 0 1em 0 1em;
 }

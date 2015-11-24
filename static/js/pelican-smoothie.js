@@ -60,17 +60,20 @@ $(function(){
     });
 
 // Sticky Navigation Bar
-    var ucwnav = $('.ucw-nav');
-    if (ucwnav.length) {
+    var $ucwnav = $('.ucw-nav');
+    if ($ucwnav.length) {
+        // move nav up
+        $ucwnav.css("top", -$ucwnav.find('nav').outerHeight(true));
+        
         new Waypoint({
-            element: ucwnav,
+            element: $ucwnav,
             handler: function(direction) {
                 var shouldBeStuck = direction === "down";
                 var wrapperHeight = shouldBeStuck ?
-                    $('.ucw-nav nav').outerHeight(true) : '';
+                    $ucwnav.find('nav').outerHeight(true) : '';
 
-                $('.ucw-nav').height(wrapperHeight);
-                $('.ucw-nav').toggleClass('navbar-fixed', shouldBeStuck);
+                $ucwnav.height(wrapperHeight);
+                $ucwnav.toggleClass('navbar-fixed', shouldBeStuck);
             }
         });
     }
