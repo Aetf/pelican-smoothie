@@ -46,8 +46,8 @@ $(function(){
                 $fab.find('.btn-large .material-icons').text('keyboard_arrow_up');
             } else {
                 menuItem.detach();
-                $fab.find("a.btn-large").attr("href", ucw.fab_main_link);
-                $fab.find("a.btn-large").attr("fab-label", ucw.fab_main_label);
+                $fab.find("a.btn-large").attr("href", menuItem.find('a').attr('href'));
+                $fab.find("a.btn-large").attr("fab-label", menuItem.find('a').attr('fab-label'));
                 $fab.find('.btn-large .material-icons').text(ucw.fab_main_icon);
             }
             $fab.toggleClass('scrolled', scrolled);
