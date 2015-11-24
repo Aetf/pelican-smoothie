@@ -1,12 +1,16 @@
 {% for groupTitle, groupList in dates | groupby('date.month') | reverse %}
     <h2>
+        {% if MONTH_ARCHIVE_URL %}
     	<a href="{{- MONTH_ARCHIVE_URL | strfmt(date=groupList[0].date) | absurl -}}">
     	{{ groupList[0].date | strftime('%B') }}
     	</a>
+        {% else %}
+        {{ groupList[0].date | strftime('%B') }}
+        {% endif %}
     </h2>
     <ul>
         {% for article in groupList %}
-        <li><a href="{{ article.url }}">{{ article.title }}</a></li>
+        <li><a href="{{- article.url | absurl -}}">{{ article.title }}</a></li>
         {% endfor %}
     </ul>
 {% endfor %}

@@ -13,27 +13,60 @@ mixpanel.track("Page", {"Name": "{{AUTHOR}}", "page": "Period Archives", "url": 
 <div class="pure-u-5-24 pure-u-md-5-24 pure-u-lg-5-24"></div>
 <div class="pure-u-14-24 pure-u-md-14-24 pure-u-lg-14-24">
     {% if period|length == 3 %}
-        <h1 class="article-heading">Archives for {{ period | periodfmt('%Y-%m-%d') }}</h1>
+        <h1 class="article-heading">Archives for {{ period|periodToDate|strftime('%Y-%m-%d') }}</h1>
     {% elif period|length == 2 %}
-        <h1 class="article-heading">Archives for {{ period | periodfmt('%Y-%m') }}</h1>
+        <h1 class="article-heading">Archives for {{ period|periodToDate|strftime('%Y-%m') }}</h1>
     {% else %}
-        <h1 class="article-heading">Archives for {{ period | periodfmt('%Y') }}</h1>
+        <h1 class="article-heading">Archives for {{ period|periodToDate|strftime('%Y') }}</h1>
     {% endif%}
 </div>
 {% endblock header %}
 
 {% set waypoint_selector = '.article-heading' %}
-{% set fab_main_link = SITEURL + '/blog' %}
-{% set fab_main_label = 'Blog' %}
 {% set fab_main_icon = 'keyboard_arrow_left' %}
 {% set fab_main_icon_class = 'md-light' %}
-{% set fab_main_icon_hover = 'description' %}
 {% set fab_main_color = 'blue' %}
 {% set fab_main_color_dark = 'blue' -%}
+
+{% if period|length == 3 %}
+    {% if MONTH_ARCHIVE_URL %}
+        {% set fab_main_link = MONTH_ARCHIVE_URL | strfmt(date=period|periodToDate) %}
+        {% set fab_main_label = 'Month Archives' %}
+        {% set fab_main_icon_hover = 'storage' %}
+    {% elif YEAR_ARCHIVE_URL %}
+        {% set fab_main_link = YEAR_ARCHIVE_URL | strfmt(date=period|periodToDate) %}
+        {% set fab_main_label = 'Year Archives' %}
+        {% set fab_main_icon_hover = 'storage' %}
+    {% else %}
+        {% set fab_main_link = 'archives' %}
+    {% set fab_main_label = 'All Archives' %}
+    {% set fab_main_icon_hover = 'storage' %}
+    {% endif %}
+{% elif period|length == 2 %}
+    {% if YEAR_ARCHIVE_URL %}
+        {% set fab_main_link = YEAR_ARCHIVE_URL | strfmt(date=period|periodToDate) %}
+        {% set fab_main_label = 'Year Archives' %}
+        {% set fab_main_icon_hover = 'storage' %}
+    {% else %}
+        {% set fab_main_link = 'archives' %}
+    {% set fab_main_label = 'All Archives' %}
+    {% set fab_main_icon_hover = 'storage' %}
+    {% endif %}
+{% else %}
+    {% set fab_main_link = 'archives' %}
+    {% set fab_main_label = 'All Archives' %}
+    {% set fab_main_icon_hover = 'storage' %}
+{% endif %}
+
 {% block fabmenu %}
     <li>
         <a href='#search' class="page-scroll btn-floating grey" fab-label='Search'>
             <i class="material-icons">search</i>
+        </a>
+    </li>
+    <li>
+        <a href="{{- 'blog' | absurl -}}" class="page-scroll btn-floating green" fab-label='Blog'>
+            <i class="material-icons">description</i>
         </a>
     </li>
 {% endblock fabmenu %}

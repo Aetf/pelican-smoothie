@@ -28,12 +28,7 @@ $(function(){
     });
 
     // sticky scroll effect
-    var menuItem = $(
-            ('<li>' +
-             '<a href="{0}" fab-label="{1}" class="page-scroll btn-floating red">' +
-             '<i class="material-icons">{2}</i>' +
-             '</a>')
-            .format(ucw.fab_main_link, ucw.fab_main_label, ucw.fab_main_icon_hover));
+    var menuItem = $('#fab_alt_main').detach();
 
     new Waypoint({
         element: $(ucw.waypoint_selector)[0],

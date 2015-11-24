@@ -135,8 +135,14 @@
             <ul>
                 {% block fabmenu %}
                 {% endblock fabmenu %}
+                <li id='fab_alt_main'>
+                     <a href="{{- fab_main_link | absurl -}}" fab-label="{{ fab_main_label }}"
+                        class="page-scroll btn-floating red">
+                         <i class="material-icons">{{ fab_main_icon_hover }}</i>
+                     </a>
+                 </li>
             </ul>
-            <a href='{{ fab_main_link }}' fab-label='{{ fab_main_label }}'
+            <a href='{{- fab_main_link | absurl -}}' fab-label='{{ fab_main_label }}'
                class="btn-floating btn-large {{ fab_main_color }} smooth-scroll">
                 <i class="material-icons {{ fab_main_icon_class }}">{{ fab_main_icon }}</i>
             </a>
@@ -210,7 +216,7 @@
         // Pass Jinja template variables to js
         var ucw = ucw || {};
         ucw.waypoint_selector = '{{ waypoint_selector }}';
-        ucw.fab_main_link = '{{ fab_main_link }}';
+        ucw.fab_main_link = '{{ fab_main_link | absurl }}';
         ucw.fab_main_label = '{{ fab_main_label }}';
         ucw.fab_main_icon = '{{ fab_main_icon }}';
         ucw.fab_main_icon_class = '{{ fab_main_icon_class }}';

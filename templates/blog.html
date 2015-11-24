@@ -17,7 +17,7 @@
 {% endblock header %}
 
 {% set waypoint_selector = '.article-heading' %}
-{% set fab_main_link = SITEURL + '/' %}
+{% set fab_main_link = '' %}
 {% set fab_main_label = 'Home' %}
 {% set fab_main_icon = 'keyboard_arrow_left' %}
 {% set fab_main_icon_class = 'md-light' %}
@@ -31,7 +31,7 @@
         </a>
     </li>
     <li>
-        <a href='{{- SITEURL -}}/{{- ARCHIVES_URL -}}' class="page-scroll btn-floating green" fab-label='Archives'>
+        <a href='{{- ARCHIVES_URL | absurl -}}' class="page-scroll btn-floating green" fab-label='Archives'>
             <i class="material-icons">storage</i>
         </a>
     </li>
@@ -57,7 +57,7 @@
     <div class="pure-u-2-3 pure-u-md-1-2 pure-u-lg-14-24">
         {% for article in dates %}
             <div class="post-preview">
-                    <a class="blog-index-title" href="{{ SITEURL }}/{{ article.url }}">
+                    <a class="blog-index-title" href="{{- article.url | absurl -}}">
                         <h2 class="post-title">{{ article.title }}</h2>
                         {%if article.subtitle %}
                             <h3 class="post-subtitle">{{ article.subtitle }}</h3>
@@ -71,7 +71,7 @@
                     </p>
             </div>
             <div class="entry-content">{{ article.summary }}</div>
-            <a rel="full-article" href="{{ SITEURL }}/{{ article.url }}"
+            <a rel="full-article" href="{{- article.url | absurl -}}"
                class="waves-effect waves-light btn btn-default">
                 <i class="material-icons right"></i>Read On
             </a>

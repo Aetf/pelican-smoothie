@@ -44,7 +44,7 @@
                 <div class="article-tags">
                     {% for tag in article.tags %}
                     <div class="chip">
-                        <a href="{{- SITEURL -}}/{{- tag.url -}}">{{- tag.name -}}</a>
+                        <a href="{{- tag.url | absurl -}}">{{- tag.name -}}</a>
                     </div>
                     {% endfor %}
                 </div>
@@ -54,7 +54,7 @@
 {% endblock header %}
 
 {% set waypoint_selector = '.article-heading' %}
-{% set fab_main_link = SITEURL + '/blog' %}
+{% set fab_main_link = 'blog' %}
 {% set fab_main_label = 'Blog' %}
 {% set fab_main_icon = 'keyboard_arrow_left' %}
 {% set fab_main_icon_class = 'md-light' %}

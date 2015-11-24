@@ -17,7 +17,7 @@ mixpanel.track("Page", {"Name": "{{AUTHOR}}", "page": "Archives", "url": "{{outp
 {% endblock header %}
 
 {% set waypoint_selector = '.article-heading' %}
-{% set fab_main_link = SITEURL + '/blog' %}
+{% set fab_main_link = 'blog' %}
 {% set fab_main_label = 'Blog' %}
 {% set fab_main_icon = 'keyboard_arrow_left' %}
 {% set fab_main_icon_class = 'md-light' %}
@@ -37,10 +37,18 @@ mixpanel.track("Page", {"Name": "{{AUTHOR}}", "page": "Archives", "url": "{{outp
 <div class="pure-u-1-6 pure-u-md-1-4 pure-u-lg-5-24"></div>
 <div class="pure-u-2-3 pure-u-md-1-2 pure-u-lg-14-24">
     {% for year, articles in dates | groupby( 'date.year' ) | reverse %}
-    <h2>{{ year }}</h2>
+    <h2>
+        {% if YEAR_ARCHIVE_URL %}
+        <a href="{{- YEAR_ARCHIVE_URL | datestrfmt(year) | absurl -}}">
+        {{ year }}
+        </a>
+        {% else %}
+        {{ year }}
+        {% endif %}
+    </h2>
     <ul>
         {% for article in articles %}
-        <li><a href="{{ article.url }}">{{ article.title }}</a></li>
+        <li><a href="{{ article.url | absurl }}">{{ article.title }}</a></li>
         {% endfor %}
     </ul>
     {% endfor %}
