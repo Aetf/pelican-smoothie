@@ -47,7 +47,7 @@ Tag Cloud - {{ super() }}
 <div class="pure-u-14-24 pure-u-md-14-24 pure-u-lg-14-24">
     <div class="entry-content">
         <ul class="tagcloud">
-            {% for tag, weight in tag_cloud %}
+            {% for tag, weight in tag_cloud|sort %}
             <li data-weight="{{- weight -}}">
                 <a href="{{- tag.url | absurl -}}">{{ tag.name }}</a>
             </li>
