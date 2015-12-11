@@ -30,6 +30,16 @@
             <i class="material-icons">search</i>
         </a>
     </li>
+    {% if FEED_ATOM %}
+    <li>
+        <a rel="alternate" type="application/atom+xml"
+           href='{{- FEED_ATOM | nonetoempty | absurl -}}'
+           class="page-scroll btn-floating orange"
+           fab-label='Feeds'>
+            <i class="fa fa-rss"></i>
+        </a>
+    </li>
+    {% endif %}
     <li>
         <a href='{{- ARCHIVES_URL | absurl -}}' class="page-scroll btn-floating green" fab-label='Archives'>
             <i class="material-icons">storage</i>
@@ -40,6 +50,7 @@
             <i class="material-icons">local_offer</i>
         </a>
     </li>
+
 {% endblock fabmenu %}
 {% block fabtoggle %} {% endblock fabtoggle %}
 
