@@ -130,3 +130,7 @@ h1 a:hover {
 .markdown .red {
     color: #B50000;
 }
+
+.markdown img {
+    margin: 0;
+}
