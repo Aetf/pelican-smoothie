@@ -613,12 +613,12 @@ h4:hover > a.headerlink,
 h5:hover > a.headerlink,
 h6:hover > a.headerlink,
 dt:hover > a.headerlink {
-    text-decoration: none;
     visibility: visible;
 }
 a.headerlink {
-    padding-left: .5em;
     visibility: hidden;
+    padding-left: .5em;
+    vertical-align: middle;
 }
 h1:hover > a.anchor-link,
 h2:hover > a.anchor-link,

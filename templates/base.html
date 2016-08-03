@@ -77,6 +77,10 @@
     <link href="/theme/css/pygment.css" rel="stylesheet">
     <link href="/theme/css/prism-coy.css" rel="stylesheet" />
 
+    {% assets filters="less", output="css/pelican-smootie-extra.css", "css/pelican-smootie-extra.less" %}
+        <link href="/{{ ASSET_URL }}" rel="stylesheet" />
+    {% endassets %}
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
