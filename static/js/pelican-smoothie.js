@@ -97,4 +97,12 @@ $(function(){
             }
         }
     });
+
+// Lightbox2 for images
+    $('.markdown a > img').parent().attr('data-lightbox', 'a')
+    lightbox.option({
+        'fadeDuration': 300,
+        'resizeDuration': 200,
+        'wrapAround': true
+    })
 });
