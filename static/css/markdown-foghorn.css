@@ -138,3 +138,70 @@ h1 a:hover {
 .markdown td,th {
     padding: 5px;
 }
+
+/*
+ * from bootstrap callout, http://cpratt.co/twitter-bootstrap-callout-css-styles/ 
+ */
+.markdown .admonition {
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid #eee;
+    border-left-width: 0.75em;
+    font-size: .85rem;
+}
+
+.markdown .admonition .admonition-title {
+    font-size: 150%;
+    font-weight: 500;
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.markdown .admonition p {
+    margin-top: 0;
+}
+
+.markdown .admonition p:last-child {
+    margin-bottom: 0;
+}
+
+.markdown .admonition+.markdown .admonition {
+    margin-top: -5px;
+}
+
+.markdown .admonition {
+    border-left-color: #777;
+}
+.markdown .admonition .admonition-title {
+    color: #777;
+}
+.markdown .admonition.primary {
+    border-left-color: #428bca;
+}
+.markdown .admonition.primary .admonition-title {
+    color: #428bca;
+}
+.markdown .admonition.success {
+    border-left-color: #5cb85c;
+}
+.markdown .admonition.success .admonition-title {
+    color: #5cb85c;
+}
+.markdown .admonition.danger {
+    border-left-color: #d9534f;
+}
+.markdown .admonition.danger .admonition-title {
+    color: #d9534f;
+}
+.markdown .admonition.warning {
+    border-left-color: #f0ad4e;
+}
+.markdown .admonition.warning .admonition-title {
+    color: #f0ad4e;
+}
+.markdown .admonition.info {
+    border-left-color: #5bc0de;
+}
+.markdown .admonition.info .admonition-title {
+    color: #5bc0de;
+}
