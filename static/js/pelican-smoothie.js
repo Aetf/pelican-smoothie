@@ -104,5 +104,9 @@ $(function(){
         'fadeDuration': 300,
         'resizeDuration': 200,
         'wrapAround': true
-    })
+    });
+
+// Better table in markdown
+    $('.markdown table').addClass('highlight');
+    $('.markdown table').addClass('bordered');
 });

@@ -134,3 +134,7 @@ h1 a:hover {
 .markdown img {
     margin: 0;
 }
+
+.markdown td,th {
+    padding: 5px;
+}
