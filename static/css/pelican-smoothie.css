@@ -242,6 +242,7 @@ hr {
     margin: 0;
     color: white;
     letter-spacing: 1px;
+    padding: 0px 5px;
 }
 @media screen and (max-width: 480px) {
     .intro-header-article .article-heading, .intro-header-page .article-heading {
