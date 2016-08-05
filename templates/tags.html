@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 
 {% block meta %}
-<link href="/theme/tx3TagCloud/tx3-tag-cloud.css" rel="stylesheet">
+<link href="/theme/jQCloud/dist/jqcloud.min.css" rel="stylesheet">
+<link href="/theme/css/jqcloud-custom.css" rel="stylesheet">
 {% endblock meta %}
 
 {% block analytics %}
@@ -46,13 +47,7 @@ Tag Cloud - {{ super() }}
 <div class="pure-u-3-24 pure-u-md-3-24 pure-u-lg-3-24"></div>
 <div class="pure-u-18-24 pure-u-md-18-24 pure-u-lg-18-24">
     <div class="entry-content">
-        <ul class="tagcloud">
-            {% for tag, weight in tag_cloud|sort %}
-            <li data-weight="{{- TAG_CLOUD_STEPS + 1 - weight -}}">
-                <a href="{{- tag.url | absurl -}}">{{ tag.name }}</a>
-            </li>
-            {% endfor %}
-        </ul>
+        <div class="tagcloud"></div>
     </div>
 </div>
 <hr>
@@ -60,12 +55,25 @@ Tag Cloud - {{ super() }}
 
 {% block jscripts %}
 {{ super() }}
-<!-- tx3TagCloud scripts -->
-<script src="/theme/tx3TagCloud/jquery.tx3-tag-cloud.js"></script>
+<!-- jQCloud scripts -->
+<script src="/theme/jQCloud/dist/jqcloud.min.js"></script>
 <script>
     $(function() {
-        $(".tagcloud").tx3TagCloud({
-            multiplier: 5
+        $("div.tagcloud").jQCloud([
+            {% for tag, weight in tag_cloud|sort %}
+            {
+                text: "{{ tag.name }}",
+                weight: {{- TAG_CLOUD_STEPS + 1 - weight -}},
+                link: "{{- tag.url | absurl -}}"
+            },
+            {% endfor %}
+        ],
+        {
+            height: window.innerHeight * 0.45,
+            autoResize: true,
+            steps: {{- TAG_CLOUD_STEPS -}},
+            delay: 50,
+            encodeURI: false,
         });
     });
 </script>
