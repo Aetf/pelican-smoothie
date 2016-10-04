@@ -7,6 +7,10 @@ mixpanel.track("Page", {"Name": "{{AUTHOR}}", "page": "Archives", "url": "{{outp
 </script>
 {% endblock analytics %}
 
+{% block titletag %}
+Archives - {{ super() }}
+{% endblock titletag %}
+
 {% set header_class = "intro-header-page" %}
 {% set header_bg = COVER_IMG %}
 {% block header %}
@@ -25,11 +29,6 @@ mixpanel.track("Page", {"Name": "{{AUTHOR}}", "page": "Archives", "url": "{{outp
 {% set fab_main_color = 'blue' %}
 {% set fab_main_color_dark = 'blue' -%}
 {% block fabmenu %}
-    <li>
-        <a href='#search' class="page-scroll btn-floating grey" fab-label='Search'>
-            <i class="material-icons">search</i>
-        </a>
-    </li>
 {% endblock fabmenu %}
 {% block fabtoggle %} {% endblock fabtoggle %}
 

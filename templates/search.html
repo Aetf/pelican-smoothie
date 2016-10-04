@@ -8,7 +8,7 @@
 {% endblock meta %}
 
 {% block titletag %}
-Search - {{- super() -}}
+Search - {{ super() -}}
 {% endblock titletag %}
 
 {% set header_class = "intro-header-page" %}
@@ -33,20 +33,55 @@ Search - {{- super() -}}
 {% block content %}
 <div class="pure-u-5-24 pure-u-md-5-24 pure-u-lg-5-24"></div>
 <div class="pure-u-14-24 pure-u-md-14-24 pure-u-lg-14-24">
-    <div class="search-button">
-        <form id="search" class="floating-search"
-              action="{{SITEURL}}/search.html"
+    <div class="block-search card">
+        <form action="{{SITEURL}}/search.html"
               onsubmit="return validateForm(this.elements['q'].value);">
-            <input id="tipue_search_input" class="search-query"
-                    type="search" name="q" autocomplete=off
-                    placeholder="Search">
+            <input id="tipue_search_input" class="block-search-query"
+                   type="search" name="q" autocomplete=off
+                   placeholder="Search">
+            <i class="material-icons">search</i>
         </form>
     </div>
     <div id="tipue_search_content">
-        <div class="tipue_search_spinner">
-            <div class="tipue_search_rect1"></div>
-            <div class="tipue_search_rect2"></div>
-            <div class="rect3"></div>
+        <div class="center-align">
+            <div class="preloader-wrapper active">
+                <div class="spinner-layer spinner-blue">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+                <div class="spinner-layer spinner-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+                <div class="spinner-layer spinner-yellow">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+                <div class="spinner-layer spinner-green">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

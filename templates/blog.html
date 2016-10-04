@@ -7,6 +7,10 @@
 </script>
 {% endblock analytics %}
 
+{% block titletag %}
+Blog - {{ super() -}}
+{% endblock titletag %}
+
 {% set header_class = "intro-header-page" %}
 {% set header_bg = COVER_IMG %}
 {% block header %}
@@ -25,11 +29,6 @@
 {% set fab_main_color = 'blue' %}
 {% set fab_main_color_dark = 'blue' -%}
 {% block fabmenu %}
-    <li>
-        <a href='#search' class="page-scroll btn-floating grey" fab-label='Search'>
-            <i class="material-icons">search</i>
-        </a>
-    </li>
     {% if FEED_ATOM %}
     <li>
         <a rel="alternate" type="application/atom+xml"

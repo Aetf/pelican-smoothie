@@ -7,6 +7,10 @@ mixpanel.track("Page", {"Name": "{{AUTHOR}}", "page": "Period Archives", "url": 
 </script>
 {% endblock analytics %}
 
+{% block titletag %}
+Archives - {{ super() }}
+{% endblock titletag %}
+
 {% set header_class = "intro-header-page" %}
 {% set header_bg = COVER_IMG %}
 {% block header %}
@@ -59,11 +63,6 @@ mixpanel.track("Page", {"Name": "{{AUTHOR}}", "page": "Period Archives", "url": 
 {% endif %}
 
 {% block fabmenu %}
-    <li>
-        <a href='#search' class="page-scroll btn-floating grey" fab-label='Search'>
-            <i class="material-icons">search</i>
-        </a>
-    </li>
     <li>
         <a href="{{- 'blog' | absurl -}}" class="page-scroll btn-floating green" fab-label='Blog'>
             <i class="material-icons">description</i>

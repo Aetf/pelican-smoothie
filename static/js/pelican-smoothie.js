@@ -109,4 +109,19 @@ $(function(){
 // Better table in markdown
     $('.markdown table').addClass('highlight');
     $('.markdown table').addClass('bordered');
+
+// Search Bar
+    $('.overlay').on('click', function(){
+        $('.search-overlay').fadeOut();
+    });
+    $('#search-btn').on('click', function(){
+        $('.search-overlay').fadeIn();
+        $("#search-query").focus();
+        $('#search-query').on('keyup.search-esc', function(e) {
+            if (e.keyCode == 27) { // escape key maps to keycode `27`
+                $('.search-overlay').fadeOut();
+                $('#search-query').off('keyup.search-esc');
+            }
+        });
+    });
 });
